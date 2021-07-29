@@ -1,6 +1,7 @@
 import React from 'react';
 import { MoviesHeader } from './components/MoviesHeader';
 import { Nav } from './layout/nav/Nav';
+import { ContainerMain } from './helpers/ContainerMain'
 
 export const MovieManiaApp = () => {
     return (
@@ -8,7 +9,10 @@ export const MovieManiaApp = () => {
             <header>
                 <Nav />
             </header>
-            <MoviesHeader />
+            <>
+                <MoviesHeader category={'movie'} />
+                <MoviesHeader category={'tv'} />
+            </>
         </div>
     );
 };

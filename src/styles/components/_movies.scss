@@ -1,32 +1,55 @@
 %letterStyle {
+    color: rgb(56, 56, 56);
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
-    
 }
 
 %cointainerSM {
     @extend %letterStyle;
-    width: 100%;
-    height: auto;
+}
+
+%descriptionStyle {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ContainerMainMovie {
     @extend %cointainerSM;
+    float: left;
+    width: 12.5%;
+    margin-bottom: 30px;
 }
-
 
 .containerMovie {
-    width: 12.5%;
-    height: auto;
-    float: left;
-    margin-top: 10px;
+    text-align: center;
+    height: 21.5rem;
+    cursor: pointer;
+    margin-left: 8px;
+    margin-right: 7px;
 }
 
-.movie__poster {
+// .containerMovie:hover {
+//     // scale: ;
+// }
+
+.poster {
+    border-radius: 20px;
     width: 100%;
-    height: 380px;
 }
 
-.movie__poster:hover {
-    transform: scale(1.1); 
+.desp {
+    @extend %descriptionStyle;
+    @extend %letterStyle;
 }
+
+// .avegare {
+//     position: relative;
+//     // top: 20rem;
+//     font-size: 15px;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     width: 163px;
+//     height: 28px;
+//     color: rgb(0, 211, 0);
+//     font-weight: bold;
+// }
