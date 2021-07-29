@@ -1,0 +1,16 @@
+
+%containerStyle {
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.containerMain {
+    @extend %containerStyle;
+    // display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
