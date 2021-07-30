@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { ContainerMain } from '../helpers/ContainerMain';
 import { useAxios } from '../hooks/useAxios';
+import { CategoryHead } from './CategoryHead';
 
-export const MoviesHeader = ({ category }) => {
+export const MoviesHeader = ({ category, headtitle }) => {
     const { resp, error, isLoading } = useAxios({
         methodname: 'get',
         type: category,
@@ -11,12 +12,13 @@ export const MoviesHeader = ({ category }) => {
 
     console.log(resp)
     return (
-        <ContainerMain>
+        <div>
+            <CategoryHead titlehead={ headtitle } />
             {/* {error && <h1>Error 404</h1>} */}
             {isLoading === true && <h1>Loading</h1>}
+            <div className='ContainerMainMovie'>
             {resp !== null && isLoading === false && resp.results.slice(0, 8).map((movie) => (
-                <div className='ContainerMainMovie' key={movie.id}>
-                        <div className='containerMovie'>
+                        <div className='containerMovie' key={movie.id}>
                             <img 
                                 src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
                                 alt={movie.title}
@@ -36,8 +38,8 @@ export const MoviesHeader = ({ category }) => {
                                 }
                             {/* <p className='movie avegare'>{movie.vote_average * 10}% average</p> */}
                         </div>
-                </div>
             ))}
-        </ContainerMain>
+            </div>
+        </div>
     );
 };

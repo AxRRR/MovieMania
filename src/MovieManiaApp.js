@@ -9,10 +9,16 @@ export const MovieManiaApp = () => {
             <header>
                 <Nav />
             </header>
-            <>
-                <MoviesHeader category={'movie'} />
-                <MoviesHeader category={'tv'} />
-            </>
+            <ContainerMain>
+                <MoviesHeader 
+                    category={'movie'} 
+                    headtitle={'peliculas'} 
+                />
+                <MoviesHeader 
+                    category={'tv'} 
+                    headtitle={'series'} 
+                />
+            </ContainerMain>
         </div>
     );
 };
