@@ -1,7 +1,7 @@
 import React from 'react';
-import { MoviesHeader } from './components/MoviesHeader';
 import { Nav } from './layout/nav/Nav';
 import { ContainerMain } from './helpers/ContainerMain'
+import { CategoryHead } from './components/CategoryHead';
 
 export const MovieManiaApp = () => {
     return (
@@ -10,14 +10,14 @@ export const MovieManiaApp = () => {
                 <Nav />
             </header>
             <ContainerMain>
-                <MoviesHeader 
-                    category={'movie'} 
-                    headtitle={'peliculas'} 
+                <CategoryHead 
+                    titlehead={'peliculas'} 
+                    category={'movie'}  
                 />
-                <MoviesHeader 
-                    category={'tv'} 
-                    headtitle={'series'} 
-                />
+                {/* <CategoryHead 
+                    titlehead={'serie'} 
+                    category={'tv'}  
+                /> */}
             </ContainerMain>
         </div>
     );

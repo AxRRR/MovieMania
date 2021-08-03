@@ -11,13 +11,14 @@ export const useAxios = ({ method, type, genre }) => {
   const apiUrl = "https://api.themoviedb.org/3/";
   const apiKey = '65321490780e7762cb0121f9c9afeb23';
 
+  const options = {
+  method: method,
+    url: `${apiUrl}${type}/${genre}?api_key=${apiKey}`,
+    headers: { },
+  };
+  
   useEffect(() => {
     SetIsLoading(true);
-    const options = {
-    method: method,
-      url: `${apiUrl}${type}/${genre}?api_key=${apiKey}`,
-      headers: { },
-    };
 
     axios
       .request(options)

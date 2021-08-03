@@ -1,3 +1,11 @@
+%LettlerStyle {
+    color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
 .navbar {
     // position: fixed;
     color: $morado;
@@ -16,3 +24,33 @@
 .items {
     margin-left: 10px;
 }
+
+.ctg-container-main {
+    // background-color: $morado;
+    width: 100%;
+    height: auto;
+}
+
+.ctg-container-filter {
+    display: flex;
+    background-color: $morado;
+    width: 100%;
+    border-radius: 2px;
+}
+
+.ctg-container-categories {
+    display: flex;
+    background-color: whitesmoke;
+    border-radius: 2px;
+}
+
+.ctg-items {
+    @extend %LettlerStyle;
+}
+
+.ctg-items-white {
+    @extend %LettlerStyle;
+    color: white;
+}
+    
+
