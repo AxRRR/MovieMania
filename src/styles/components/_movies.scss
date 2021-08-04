@@ -16,7 +16,6 @@
 .ContainerTitle {
     width: 100%;
     height: 20px;
-    margin-top: 0px;
 }
 
 .ContainerMainMovie {
@@ -45,11 +44,73 @@
 
 .poster {
     width: 100%;
-    height: 220px;
+    height: 70%;
 }
 
 .desp {
     @extend %descriptionStyle;
     @extend %letterStyle;
 }
+
+.sd-containerMain {
+    width: 30%;
+    float: right;
+    // border-width: 1px;
+    // border-style: groove;
+    // border-color: rgba(46, 46, 46, 0.1);
+}
+
+.sd-containerInd {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.sd-poster {
+    float: left;
+    width: 17%;
+    height: 25%;
+}
+
+.dt-containerMain {
+    width: 100%;
+    display: flex;
+    height: 365px;
+}
+
+.Bigposter {
+    width: 100%;
+    // float: left;
+    height: 100%;
+}
+
+.dt-containerImage {
+    width: 35%;
+    height: 100%;
+}
+
+.dt-containerDetails {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.dt-title {
+    // background-color: blue;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 0px;
+}
+
+.dt-genres {
+    display: flex;
+    width: 100%;
+    height: 50px;
+}
+
+.dt-genresStyle {
+    margin-right: 10px;
+}
+
 

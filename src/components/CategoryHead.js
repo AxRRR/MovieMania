@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useAxios } from '../hooks/useAxios';
+import { BestRatedSide } from './BestRatedSide';
 import { MoviesHeader } from './MoviesHeader';
 
-export const CategoryHead = ({ category, genre = 'upcoming' }) => {
+export const CategoryHead = ({ category, genre = 'popular' }) => {
     const [typeFilm, setTypeFilm] = useState(category)
     const [typeGenre, setTypeGenre] = useState(genre)
 
@@ -12,7 +13,8 @@ export const CategoryHead = ({ category, genre = 'upcoming' }) => {
     const { resp, error, isLoading } = useAxios({
         methodname: 'get',
         type: typeFilm,
-        genre: typeGenre
+        genre: typeGenre,
+        extraArg: null
     });
 
     console.log(typeFilm)
@@ -41,6 +43,7 @@ export const CategoryHead = ({ category, genre = 'upcoming' }) => {
                         onClick={() => setTypeGenre('upcoming')}>Próximamente</p>
                 </div>
             </div>
+            <BestRatedSide />
             <MoviesHeader 
                 arrfilms={resp} 
                 isLoading={isLoading}
