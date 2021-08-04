@@ -37,10 +37,10 @@ export const CategoryHead = ({ category, genre = 'popular' }) => {
                         onClick={() => setTypeGenre('popular')}>Populares</p>
                     <p 
                         className='ctg-items'
-                        onClick={() => setTypeGenre('latest')}>Más recientes</p>
+                        onClick={() => setTypeGenre('upcoming')}>Próximamente</p>
                     <p 
                         className='ctg-items'
-                        onClick={() => setTypeGenre('upcoming')}>Próximamente</p>
+                        onClick={() => setTypeGenre('top_rated')}>Mejor valoradas</p>
                 </div>
             </div>
             <BestRatedSide />

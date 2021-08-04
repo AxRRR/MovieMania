@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAxios } from '../hooks/useAxios';
+import { FilmData } from './FilmData';
 import { GaleryDetails } from './GaleryDetails';
 
 export const ShowDetails = () => {
@@ -40,7 +41,7 @@ export const ShowDetails = () => {
                         <p className=''>{resp.overview}</p>
                     </div>
                 </div>}
-            <GaleryDetails filmIdentifier={RouteIdFilm} />
+                
         </Fragment>
     );
 };
