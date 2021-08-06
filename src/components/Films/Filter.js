@@ -6,16 +6,24 @@ import { Films } from './Films';
 export const Filter = ({ category, genre = 'popular' }) => {
     const [typeFilm, setTypeFilm] = useState(category)
     const [typeGenre, setTypeGenre] = useState(genre)
+    const [NumShowFilms, setNumShowFilms] = useState(20);
+    const [PageShow, setPageShow] = useState(1);
 
     useEffect(() => {
-    }, [typeGenre, typeFilm])
+    }, [typeGenre, typeFilm, PageShow])
 
     const { resp, error, isLoading } = useAxios({
         methodname: 'get',
         type: typeFilm,
         genre: typeGenre,
-        extraArg: null
+        extraArg: null,
+        page: PageShow,
+        typeRequest: 'list'
     });
+
+    const updatePageHandle = () => {
+        setPageShow(PageShow+1);
+    }
 
     return (
         <div className='ctg-container-main'>
@@ -47,6 +55,10 @@ export const Filter = ({ category, genre = 'popular' }) => {
                 error={error} 
                 category={typeFilm} 
             />
+            <button 
+                className='btn__default'
+                onClick={updatePageHandle}
+                >Cargar más...</button>
         </div>
     );
 };

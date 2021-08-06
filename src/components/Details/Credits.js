@@ -2,16 +2,14 @@ import React, { Fragment } from 'react';
 import { useAxios } from '../../hooks/useAxios';
 
 
-export const Credits = ({ filmIdentificier }) => {
+export const Credits = ({ filmIdentificier, typeFilm }) => {
 
     const { resp } = useAxios({
         methodname: 'get',
-        type: 'movie',
+        type: typeFilm,
         genre: filmIdentificier,
         extraArg: 'credits'
     });
-
-    console.log(resp)
 
     return (
         <Fragment>

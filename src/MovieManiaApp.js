@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Nav } from './layout/nav/Nav';
 import { ContainerMain } from './helpers/ContainerMain'
 import { Filter } from './components/Films/Filter';
 import { Route, Switch } from 'react-router-dom';
 import { ShowDetails } from './components/Details/ShowDetails';
+import { ShowMedia } from './components/Details/ui/ShowMedia';
 
 export const MovieManiaApp = () => {
+    const [showModal, setShowModal] = useState(false);
+    const showModalHandler = () => {
+        setShowModal(true);
+    };
+    
+    const hideModalHandler = () => {
+        setShowModal(false);
+    };
+
     return (
         <div>
             <header>
@@ -20,8 +30,9 @@ export const MovieManiaApp = () => {
                         />
                     </ContainerMain>
                 </Route>
-                <Route exact path='/movie/:RouteIdFilm'>
-                    <ShowDetails />
+                <Route exact path='/:RouteTypeFilm/:RouteIdFilm'>
+                    <ShowDetails onShowModal={showModalHandler} />
+                    {showModal && <ShowMedia onCloseModal={hideModalHandler} /> }
                 </Route>
             </Switch>
         </div>

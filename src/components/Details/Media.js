@@ -1,32 +1,31 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useAxios } from '../../hooks/useAxios';
+import { Backdrops, Posters } from './helpers/MediaOptions';
 
-export const Media = ({ filmIdentifier }) => {
+export const Media = ({ filmIdentifier, typeFilm, onShowModal }) => {
+
+    const [MediaOption, setMediaOption] = useState(0)
 
     const { resp } = useAxios({
         methodname: 'get',
-        type: 'movie',
+        type: typeFilm,
         genre: filmIdentifier,
         extraArg: 'images',
         lang: 'no'
     });
 
-    console.log(resp)
-
     return (
         <Fragment>
             {resp !== null &&
             <div className='gl-containerMedia'>
-                <p className='gl-letterStyle'>Imágenes de fondo: {resp.backdrops.length}</p>
-                <p className='gl-letterStyle'>Posters: {resp.posters.length}</p>
+                <p className='gl-letterStyle'
+                    onClick={() => setMediaOption(0)}>Imágenes de fondo: {resp.backdrops.length}</p>
+                <p className='gl-letterStyle'
+                    onClick={() => setMediaOption(1)}>Posters: {resp.posters.length}</p>
             </div>}
-            {resp !== null && resp.backdrops.length >= 1 && resp.backdrops.slice(0, 2).map((b) => (
-                <img 
-                src={`https://www.themoviedb.org/t/p/original/${b.file_path}`}
-                alt={b.file_path}
-                className='BigBackdrops'
-            />
-            ))}
+            {resp !== null && MediaOption === 0 ? 
+                <Backdrops resp={resp} onShowModal={onShowModal} /> 
+                : <Posters resp={resp} onShowModal={onShowModal} /> }
         </Fragment>
     );
 };

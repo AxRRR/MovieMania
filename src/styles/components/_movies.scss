@@ -124,6 +124,15 @@
 .BigBackdrops {
     width: 100%;
     height: 100%;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.BigPosters {
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 .gl-containerMedia {
@@ -144,6 +153,27 @@
         background-color: lighten($color: $morado, $amount: 10);
         color: white;
     }
+}
+
+.fd-containerMain {
+    display: flex;
+}
+
+.fd-containerSec {
+    // display: flex;
+    float: left;
+    flex-direction: row;
+    width: 100%;
+}
+
+.fd-containerSec2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.fd-letterDesp {
+    margin-right: 9px;
 }
 
 

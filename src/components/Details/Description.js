@@ -5,15 +5,17 @@ export const Description = ({ arrFilm }) => {
         <Fragment>
             <div className='fd-containerMain'>
                 {arrFilm !== null && 
-                <div>
+                <div className='fd-containerSec'>
                     <p>Titulo Original: {arrFilm.original_title}</p>
                     <p>Estado: {arrFilm.status}</p>
+                    <div className='fd-containerSec2'>
                     {arrFilm.production_countries.map((p) => (
-                        <p>Páis de Origen: {p.name}</p>
+                        <p className='fd-letterDesp'>Páis de Origen: {p.name}</p>
                     ))}
                     {arrFilm.production_companies.map((p) => (
-                        <p>Productora/s: {p.name}</p>
+                        <p className='fd-letterDesp'>Productora/s: {p.name}</p>
                     ))}
+                    </div>
                 </div>
                 }
             </div>
