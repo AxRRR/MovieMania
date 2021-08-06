@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useAxios } from '../hooks/useAxios';
-import { BestRatedSide } from './BestRatedSide';
-import { MoviesHeader } from './MoviesHeader';
+import { useAxios } from '../../hooks/useAxios';
+import { BestRated } from './BestRated';
+import { Films } from './Films';
 
-export const CategoryHead = ({ category, genre = 'popular' }) => {
+export const Filter = ({ category, genre = 'popular' }) => {
     const [typeFilm, setTypeFilm] = useState(category)
     const [typeGenre, setTypeGenre] = useState(genre)
 
@@ -16,9 +16,6 @@ export const CategoryHead = ({ category, genre = 'popular' }) => {
         genre: typeGenre,
         extraArg: null
     });
-
-    console.log(typeFilm)
-    console.log(typeGenre)
 
     return (
         <div className='ctg-container-main'>
@@ -43,8 +40,8 @@ export const CategoryHead = ({ category, genre = 'popular' }) => {
                         onClick={() => setTypeGenre('top_rated')}>Mejor valoradas</p>
                 </div>
             </div>
-            <BestRatedSide />
-            <MoviesHeader 
+            <BestRated />
+            <Films
                 arrfilms={resp} 
                 isLoading={isLoading}
                 error={error} 

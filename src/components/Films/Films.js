@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-export const MoviesHeader = ({ arrfilms, isLoading, category }) => {
+export const Films = ({ arrfilms, isLoading, category }) => {
     useEffect(() => {
 
     }, [arrfilms, category, isLoading])
@@ -11,7 +11,7 @@ export const MoviesHeader = ({ arrfilms, isLoading, category }) => {
             {isLoading === true && <h1>Loading</h1>}
             <div className='ContainerMainMovie'>
             {arrfilms !== null && isLoading === false && arrfilms.results.slice(0, 20).map((movie) => (
-                <Link to={`/view/details/${movie.id}`}><div className='containerMovie' 
+                <Link to={`/movie/${movie.id}`}><div className='containerMovie' 
                     key={movie.id}>
                     <img 
                         src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}

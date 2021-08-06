@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-import { useAxios } from '../hooks/useAxios';
+import { useAxios } from '../../hooks/useAxios';
 
-export const BestRatedSide = () => {
-    const { resp, error, isLoading } = useAxios({
+export const BestRated = () => {
+    const { resp, isLoading } = useAxios({
         methodname: 'get',
         type: 'movie',
         genre: 'top_rated',

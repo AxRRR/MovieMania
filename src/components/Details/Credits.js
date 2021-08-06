@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react';
-import { useParams } from 'react-router-dom';
-import { useAxios } from '../hooks/useAxios';
+import { useAxios } from '../../hooks/useAxios';
 
-export const CreditsContainer = () => {
-    const { RouteIdFilm } = useParams(); 
 
-    const { resp, error, isLoading } = useAxios({
+export const Credits = ({ filmIdentificier }) => {
+
+    const { resp } = useAxios({
         methodname: 'get',
         type: 'movie',
-        genre: RouteIdFilm,
+        genre: filmIdentificier,
         extraArg: 'credits'
     });
 
@@ -16,10 +15,11 @@ export const CreditsContainer = () => {
 
     return (
         <Fragment>
+            <div>
+                <p>Reparto:</p>
+            </div>
             {resp !== null && 
                 <div className='cc-containerMain'>
-                    {/* <p>Titulo Original: {resp.original_title}</p>
-                    <p>Estado: {resp.status}</p> */}
                     {resp.cast.slice(0, 5).map((c) => (
                         <div 
                             key={c.cast_id}

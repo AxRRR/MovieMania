@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 //  Custom Hook to send requests API
 //    with different params, like: Category, Platform, Tags and no params.
 
-export const useAxios = ({ method, type, genre, extraArg = null }) => {
+export const useAxios = ({ method, type, genre, extraArg = null, lang = null }) => {
   const [resp, setResp] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, SetIsLoading] = useState(false);
@@ -14,7 +14,11 @@ export const useAxios = ({ method, type, genre, extraArg = null }) => {
 
   useEffect(() => {
     if (extraArg !== null) {
-      SetUrlCustom(`${apiUrl}${type}/${genre}/${extraArg}?api_key=${apiKey}&language=es-ES`);
+      if(lang !== null){
+        SetUrlCustom(`${apiUrl}${type}/${genre}/${extraArg}?api_key=${apiKey}`);
+      }else {
+        SetUrlCustom(`${apiUrl}${type}/${genre}/${extraArg}?api_key=${apiKey}&language=es-ES`);
+      }
     } else {
       SetUrlCustom(`${apiUrl}${type}/${genre}?api_key=${apiKey}&language=es-ES`);
     }
@@ -38,7 +42,7 @@ export const useAxios = ({ method, type, genre, extraArg = null }) => {
         console.log(error);
         SetIsLoading(false);
       });
-  }, [method, genre, type, extraArg, urlCustom]);
+  }, [method, genre, type, extraArg, urlCustom, lang]);
 
   return { resp, error, isLoading };
 };

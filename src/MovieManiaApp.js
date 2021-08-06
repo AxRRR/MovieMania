@@ -1,12 +1,9 @@
 import React from 'react';
 import { Nav } from './layout/nav/Nav';
-import { ContainerMain, ContainerMainNoFlex } from './helpers/ContainerMain'
-import { CategoryHead } from './components/CategoryHead';
+import { ContainerMain } from './helpers/ContainerMain'
+import { Filter } from './components/Films/Filter';
 import { Route, Switch } from 'react-router-dom';
-import { ShowDetails } from './components/ShowDetails';
-import { GaleryDetails } from './components/GaleryDetails';
-import { FilmData } from './components/FilmData';
-import { CreditsContainer } from './components/CreditsContainer';
+import { ShowDetails } from './components/Details/ShowDetails';
 
 export const MovieManiaApp = () => {
     return (
@@ -17,23 +14,14 @@ export const MovieManiaApp = () => {
             <Switch>
                 <Route exact path='/films'>
                     <ContainerMain>
-                        <CategoryHead 
+                        <Filter 
                             titlehead={'peliculas'} 
                             category={'movie'}  
                         />
                     </ContainerMain>
                 </Route>
-                <Route exact path='/view/details/:RouteIdFilm'>
-                    <ContainerMain>
-                        <ShowDetails />
-                        {/* <GaleryDetails /> */}
-                    </ContainerMain>
-                    <ContainerMainNoFlex>
-                        <FilmData />
-                    </ContainerMainNoFlex>
-                    <ContainerMainNoFlex>
-                        <CreditsContainer />
-                    </ContainerMainNoFlex>
+                <Route exact path='/movie/:RouteIdFilm'>
+                    <ShowDetails />
                 </Route>
             </Switch>
         </div>
