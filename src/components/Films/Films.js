@@ -5,6 +5,7 @@ export const Films = ({ arrfilms, isLoading, category }) => {
     // const [NumShowFilms, setNumShowFilms] = useState(40);
 
     useEffect(() => {}, [arrfilms, category, isLoading]);
+
     // console.log(arrfilms)
     return (
         <Fragment>
