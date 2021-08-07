@@ -14,44 +14,40 @@ export const Filter = ({ category, genre = 'popular' }) => {
     useEffect(() => {
     }, [typeGenre, typeFilm, PageShow])
 
+    const { CurrentPage, isFinalPage, updatePageHandle } = usePaginator({
+        numPage: PageShow,
+        totalPages: TotalPages
+    })
+    
     const { resp, error, isLoading } = useAxios({
         methodname: 'get',
         type: typeFilm,
         genre: typeGenre,
         extraArg: null,
-        page: PageShow,
+        page: CurrentPage,
         typeRequest: 'list'
     });
 
-    const { CurrentPage, isFinalPage } = usePaginator({
-        numPage: PageShow,
-        totalPages: TotalPages
-    })
 
-    console.log(PageShow)
-    console.log(CurrentPage)
-    const updatePageHandle = ( typePage, getTotalPages ) => {
+    // const updatePageHandle = ( typePage, getTotalPages ) => {
+    //     // console.log(isFinalPage)
+    //     // if( isFinalPage === true ) return;
+    //     // switch (typePage) {
+    //     //     case 1:
+    //     //         setPageShow(PageShow+1);
+    //     //         setTotalPages(getTotalPages);
+    //     //         break;
 
-        switch (typePage) {
-            case 1:
-                setPageShow(PageShow+1);
-                setTotalPages(getTotalPages);
-                break;
-
-            case 2:
-                setPageShow(PageShow-1);
-                setTotalPages(getTotalPages);
-                break;
+    //     //     case 2:
+    //     //         setPageShow(PageShow-1);
+    //     //         setTotalPages(getTotalPages);
+    //     //         break;
         
-            default:
-                break;
-        }
+    //     //     default:
+    //     //         break;
+    //     // }
         
-    }
-
-    if(resp !== null){
-        console.log(resp.total_pages)
-    }
+    // }
 
     return (
         <div className='ctg-container-main'>
@@ -83,11 +79,8 @@ export const Filter = ({ category, genre = 'popular' }) => {
                 error={error} 
                 category={typeFilm} 
             />
-            {/* { resp !== null && <button 
-                className='btn__default'
-                onClick={() => updatePageHandle('increment', resp.total_pages)}
-                >Cargar más...</button>} */}
             { resp !== null && <div>
+                {/* {setTotalPages(resp.total_pages)} */}
                 <button onClick={() => updatePageHandle(2, resp.total_pages)}>Ant</button>
                 {/* <input value={CurrentPage} /> */}
                 <p>{CurrentPage}</p>
@@ -96,9 +89,3 @@ export const Filter = ({ category, genre = 'popular' }) => {
         </div>
     );
 };
-
-// export const Paginator = () => {
-//     return (
-        
-//     );
-// }
