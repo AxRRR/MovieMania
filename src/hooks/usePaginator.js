@@ -1,11 +1,11 @@
 import { useState } from 'react';
-
-export const usePaginator = ({ numPage, totalPages  }) => {
+//{ numPage, totalPages  }
+export const usePaginator = () => {
     const [CurrentPage, setCurrentPage] = useState(1);
     const [isFinalPage, setisFinalPage] = useState(false);
 
     const updatePageHandle = ( typePage, getTotalPages ) => {
-        if( CurrentPage < 1 || CurrentPage >= getTotalPages){
+        if( CurrentPage < 1 || CurrentPage > getTotalPages){
 
             // if the current page is the end or start of the list...
             setisFinalPage(true);

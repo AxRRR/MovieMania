@@ -64,9 +64,46 @@
     border-radius: 5px;
 }
 
+%letterStyle {
+    color: rgb(56, 56, 56);
+    font-size: 15px;
+    width: 155px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+%paginatorStyle {
+    width: 100%;
+    height: 100px;
+}
+
 .btn__default {
     @extend %buttonStyle;
     &:hover {
+        background-color: lighten($color: $morado, $amount: 15);
+    }
+}
+
+.pg__default {
+    @extend %paginatorStyle;
+    display: flex;
+}
+
+.pg__btn-default {
+    @extend %buttonStyle;
+    width: 6%;
+    height: 40px;
+    &:hover {
         background-color: lighten($color: $morado, $amount: 10);
     }
+}
+
+.pg__Current-default {
+    @extend %letterStyle;
+    font-size: 22px;
+    width: 100px;
+    text-align: center;
+    height: 20px;
 }

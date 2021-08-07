@@ -29,7 +29,7 @@ export const useAxios = ({ method, type, typeRequest, genre, extraArg = null, la
     }
     
     
-  }, [genre, type, extraArg, lang, page]);
+  }, [genre, type, extraArg, lang, page, typeRequest]);
   
   useEffect(() => {
     
