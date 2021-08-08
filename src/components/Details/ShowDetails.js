@@ -16,7 +16,7 @@ export const ShowDetails = ({ onShowModal }) => {
         extraArg: null,
         typeRequest: null
     });
-    console.log(resp)
+    // console.log(resp)
 
     return (
         <Fragment>
@@ -78,10 +78,11 @@ export const ShowDetails = ({ onShowModal }) => {
                 />
             </ContainerMainNoFlex>
             <ContainerMainNoFlex>
-                <Credits 
+                {/* <Credits 
                     filmIdentificier={RouteIdFilm}
                     typeFilm={RouteTypeFilm}
-                /> 
+                />  */}
+                <Credits />
             </ContainerMainNoFlex>
             <ContainerMainNoFlex> 
                 <Media 

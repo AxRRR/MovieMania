@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 //  Custom Hook to send requests API
 //    with different params, like: Category, Platform, Tags and no params.
@@ -12,8 +12,10 @@ export const useAxios = ({ method, type, typeRequest, genre, extraArg = null, la
   const apiUrl = "https://api.themoviedb.org/3/";
   const apiKey = "65321490780e7762cb0121f9c9afeb23";
 
-  useEffect(() => {
+  useMemo(() => ReformatRequest(), [type, genre, extraArg])
+  useMemo(() => SendRequest(), [urlCustom])
     
+function ReformatRequest(){
     if (extraArg !== null) {
       if(lang !== null){
           SetUrlCustom(`${apiUrl}${type}/${genre}/${extraArg}?api_key=${apiKey}`);
@@ -28,11 +30,12 @@ export const useAxios = ({ method, type, typeRequest, genre, extraArg = null, la
       }
     }
     
-    
-  }, [genre, type, extraArg, lang, page, typeRequest]);
-  
-  useEffect(() => {
-    
+    console.log('Render de UseAxios')
+  }
+
+
+function SendRequest(){
+    console.log('Render 2 de UseAxios')
     const options = {
       method: method,
       url: urlCustom,
@@ -49,7 +52,7 @@ export const useAxios = ({ method, type, typeRequest, genre, extraArg = null, la
       setError(error);
       SetIsLoading(false);
     });
-  }, [urlCustom, method])
+}
 
   return { resp, error, isLoading };
 };

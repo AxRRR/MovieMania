@@ -4,6 +4,7 @@ import { ContainerMain } from './helpers/ContainerMain'
 import { Filter } from './components/Films/Filter';
 import { Route, Switch } from 'react-router-dom';
 import { ShowDetails } from './components/Details/ShowDetails';
+import { Credits } from './components/Details/Credits';
 
 export const MovieManiaApp = () => {
     return (
@@ -19,6 +20,12 @@ export const MovieManiaApp = () => {
                             category={'movie'}  
                         />
                     </ContainerMain>
+                </Route>
+                <Route exact path='/credits/:RouteIdCredits'>
+                    <Credits />
+                </Route>
+                <Route exact path='/tv/credits/:RouteIdCredits'>
+                    <Credits />
                 </Route>
                 <Route exact path='/:RouteTypeFilm/:RouteIdFilm'>
                     <ShowDetails />

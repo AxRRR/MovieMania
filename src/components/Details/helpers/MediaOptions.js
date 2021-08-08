@@ -19,7 +19,7 @@ export const Backdrops = ({ resp }) => {
                 <img 
                     src={`https://www.themoviedb.org/t/p/original/${b.file_path}`}
                     alt={b.file_path}
-                    className='BigBackdrops'
+                    className='BigBackdrops-Preview'
                     onClick={() => 
                         saveImageHandler(`https://www.themoviedb.org/t/p/original/${b.file_path}`)}
                 />

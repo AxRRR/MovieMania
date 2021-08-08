@@ -13,6 +13,18 @@ const ModalContent = (props) => {
     )
 };
 
+const BackdropInfo = (props) => {
+    return <div className='modal__backdrop' onClick={props.onClose} />
+};
+
+const ModalContentInfo = (props) => {
+    return (
+        <div className='modal__modal'>
+            <div>{props.children}</div>
+        </div>
+    )
+};
+
 const portalElement = document.getElementById('overlays');
 
 export const Modal = (props) => {
@@ -29,13 +41,13 @@ export const Modal = (props) => {
 
 export const ModalInfo = (props) => {
     return <Fragment>
-        {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
+        {ReactDOM.createPortal(<BackdropInfo onClose={props.onClose} />, portalElement)}
         {ReactDOM.createPortal(
-        <ModalContent>{props.children}</ModalContent>,
+        <ModalContentInfo>{props.children}</ModalContentInfo>,
         portalElement
         )}
-        <Backdrop onClose={props.onClose} />
-        <ModalContent>{props.children}</ModalContent>
+        <BackdropInfo onClose={props.onClose} />
+        <ModalContentInfo>{props.children}</ModalContentInfo>
     </Fragment>
 };
 
