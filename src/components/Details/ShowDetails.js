@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { ContainerMain, ContainerMainNoFlex } from '../../helpers/ContainerMain';
-import { useAxios } from '../../hooks/useAxios';
+import { useFetch } from '../../hooks/useFetch';
 import { Credits } from './Credits';
 import { Description } from './Description';
 import { Media } from './Media';
@@ -9,79 +9,79 @@ import { Media } from './Media';
 export const ShowDetails = ({ onShowModal }) => {
     const { RouteTypeFilm, RouteIdFilm } = useParams();
     
-    const { resp, isLoading } = useAxios({
-        methodname: 'get',
-        type: RouteTypeFilm,
-        genre: RouteIdFilm,
-        extraArg: null,
-        typeRequest: null
+    const resp = useFetch({
+        data: {
+            methodname: 'get',
+            type: RouteTypeFilm,
+            genre: RouteIdFilm,
+            extraArg: null,
+            typeRequest: null
+        }
     });
-    // console.log(resp)
+    console.log(resp)
 
     return (
         <Fragment>
             {/* {error && <p>La página a la que intentas acceder no existe. Error 404</p>} */}
-            {isLoading === true && <h1>Loading</h1>}
+            {resp.loading === true && <h1>Loading</h1>}
             <ContainerMain>
-                {resp !== null && RouteTypeFilm === 'movie' ?
+                {resp.data !== null && RouteTypeFilm === 'movie' ?
                     <div className='dt-containerMain'>
                         <div className='dt-containerImage'>
                         <img 
-                            src={`https://www.themoviedb.org/t/p/original/${resp.poster_path}`}
-                            alt={resp.title}
+                            src={`https://www.themoviedb.org/t/p/original/${resp.data.poster_path}`}
+                            alt={resp.data.title}
                             className='Bigposter'
                         />
                     </div>
                     <div className='dt-containerDetails'>
-                        <p className='dt-title'>{resp.title}({resp.release_date.slice(0, 4)})</p>
-                        <p className=''>{resp.release_date}  valoración: {resp.vote_average}</p>
+                        <p className='dt-title'>{resp.data.title}({resp.data.release_date.slice(0, 4)})</p>
+                        <p className=''>{resp.data.release_date}  valoración: {resp.data.vote_average}</p>
                         <div className='dt-genres'>
-                            {resp.genres.map((g) => (
-                                <p className='dt-genresStyle'>{g.name}</p>
+                            {resp.data.genres.map((g) => (
+                                <p 
+                                    key={g.name} 
+                                    className='dt-genresStyle'>{g.name}</p>
                             ))}
                         </div>
-                        <p className=''>{resp.overview}</p>
+                        <p className=''>{resp.data.overview}</p>
                     </div>
                 </div> 
                 :
                 // If not be a movie... change render to TV Series
                 <div className='dt-containerMain'>
-                    {resp !== null && <div className='dt-containerImage'>
-                        {resp.poster_path !== null ? 
+                    {resp.data !== null && <div className='dt-containerImage'>
+                        {resp.data.poster_path !== null ? 
                         <img 
-                            src={`https://www.themoviedb.org/t/p/original/${resp.poster_path}`}
-                            alt={resp.name}
+                            src={`https://www.themoviedb.org/t/p/original/${resp.data.poster_path}`}
+                            alt={resp.data.name}
                             className='Bigposter'
                         />
                         :
                         <img 
-                            src={`https://www.themoviedb.org/t/p/original/${resp.backdrop_path}`}
-                            alt={resp.name}
+                            src={`https://www.themoviedb.org/t/p/original/${resp.data.backdrop_path}`}
+                            alt={resp.data.name}
                             className='Bigposter'
                         />}
                     </div>}
-                {resp !== null && <div className='dt-containerDetails'>
-                    <p className='dt-title'>{resp.name}({resp.first_air_date.slice(0, 4)})</p>
-                    <p className=''>{resp.first_air_date}  episodios: {resp.number_of_episodes}</p>
+                {resp.data !== null && <div className='dt-containerDetails'>
+                    <p className='dt-title'>{resp.data.name}({resp.data.first_air_date.slice(0, 4)})</p>
+                    <p className=''>{resp.data.first_air_date}  episodios: {resp.data.number_of_episodes}</p>
                     <div className='dt-genres'>
-                        {resp.genres.map((g) => (
-                            <p className='dt-genresStyle'>{g.name}</p>
+                        {resp.data.genres.map((g) => (
+                            <p key={g.name} className='dt-genresStyle'>{g.name}</p>
                         ))}
                     </div>
-                    <p className=''>{resp.overview}</p>
+                    <p className=''>{resp.data.overview}</p>
                 </div>}
             </div>}
             </ContainerMain>
             <ContainerMainNoFlex>
                 <Description 
-                    arrFilm={resp} 
+                    arrFilm={resp.data} 
                 />
             </ContainerMainNoFlex>
             <ContainerMainNoFlex>
-                {/* <Credits 
-                    filmIdentificier={RouteIdFilm}
-                    typeFilm={RouteTypeFilm}
-                />  */}
                 <Credits />
             </ContainerMainNoFlex>
             <ContainerMainNoFlex> 

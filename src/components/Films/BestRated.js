@@ -1,28 +1,34 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { useAxios } from '../../hooks/useAxios';
+import { useFetch } from '../../hooks/useFetch';
 
 export const BestRated = () => {
-    const { resp, isLoading } = useAxios({
+    const resp = useFetch({data: {
         methodname: 'get',
         type: 'movie',
         genre: 'top_rated',
         extraArg: null
-    });
+    }});
 
     return (
         <Fragment>
             <div className='sd-containerMain'>
                 <p>Peliculas mejor valoradas:</p>
-                {resp !== null && isLoading === false && resp.results.slice(0, 5).map((movie) => (
-                    <Link to={`/movie/${movie.id}`}><div className='sd-containerInd'>
-                        <img 
-                            src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
-                            alt={movie.title}
-                            className='sd-poster' 
-                        />
-                        <p className='desp'>{movie.title}</p>
-                    </div></Link>
+                {resp.data !== null && 
+                    resp.loading === false && 
+                        resp.data.results.slice(0, 5).map((movie) => (
+                    <Link to={`/movie/${movie.id}`}>
+                        <div 
+                            className='sd-containerInd'
+                            key={movie.id}>
+                            <img 
+                                src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
+                                alt={movie.title}
+                                className='sd-poster' 
+                            />
+                            <p className='desp'>{movie.title}</p>
+                        </div>
+                    </Link>
                 ))}
                 <br></br>
                 <hr></hr>

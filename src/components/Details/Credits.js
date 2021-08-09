@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { GetParams } from '../../helpers/GetParams';
 import { useAxios } from '../../hooks/useAxios';
-
-import { ParseParams } from '../../hooks/useParseParams';
 
 
 export const Credits = ({ filmIdentificier, typeFilm, numShow = 5 }) => {
@@ -12,7 +11,7 @@ export const Credits = ({ filmIdentificier, typeFilm, numShow = 5 }) => {
     const location = useLocation();
 
     let arrResponse = '';
-    const { variableee } = ParseParams({
+    const { getParams } = GetParams({
         currentLocation: location
     })
 
@@ -22,8 +21,8 @@ export const Credits = ({ filmIdentificier, typeFilm, numShow = 5 }) => {
 
     const { resp } = useAxios({
         methodname: 'get',
-        type: variableee[0],
-        genre: variableee[1],
+        type: getParams[0],
+        genre: getParams[1],
         extraArg: 'credits'
     });
     // console.log(RouteIdCredits)
@@ -31,13 +30,13 @@ export const Credits = ({ filmIdentificier, typeFilm, numShow = 5 }) => {
     // console.log(RouteTypeFilm)
     // console.log(location)
     console.log('el parseresponse')
-    console.log(variableee)
+    console.log(getParams)
 
     return (
         <Fragment>
             {!!resp && numShow === 5 &&
             <div className='gl-containerMedia'>
-                <Link to={`/credits/${variableee[1]}`}>
+                <Link to={`/credits/${getParams[1]}`}>
                     <p className='gl-letterStyle'>Créditos:</p>
                 </Link>
             </div>}

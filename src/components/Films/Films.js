@@ -1,11 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Films = ({ arrfilms, isLoading, category }) => {
-
-    useEffect(() => {}, [arrfilms, category, isLoading]);
-
-    // console.log(arrfilms)
     return (
         <Fragment>
             {/* {error && <h1>Error 404</h1>} */}

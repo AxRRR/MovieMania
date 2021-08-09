@@ -18,6 +18,7 @@ export const useAxios = ({ method, type, typeRequest, genre, extraArg = null, la
 function ReformatRequest(){
     if (extraArg !== null) {
       if(lang !== null){
+        
           SetUrlCustom(`${apiUrl}${type}/${genre}/${extraArg}?api_key=${apiKey}`);
       }else {
           SetUrlCustom(`${apiUrl}${type}/${genre}/${extraArg}?api_key=${apiKey}&language=es-ES`);

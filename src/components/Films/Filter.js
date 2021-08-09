@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import queryString from 'query-string';
-import { useAxios } from '../../hooks/useAxios';
+import { useFetch } from '../../hooks/useFetch';
 import { usePaginator } from '../../hooks/usePaginator';
 import { BestRated } from './BestRated';
 import { Films } from './Films';
@@ -25,15 +25,15 @@ export const Filter = ({ category, genre = 'popular', history }) => {
 
     // Paginator Custom Hook
     const { CurrentPage, updatePageHandle } = usePaginator();
-    
-    const { resp, error, isLoading } = useAxios({
+
+    const resp = useFetch({data: {
         methodname: 'get',
         type: typeFilm,
         genre: typeGenre,
         extraArg: null,
         page: CurrentPage,
         typeRequest: 'list'
-    });
+    }})
 
     return (
         <div className='ctg-container-main'>
@@ -59,12 +59,12 @@ export const Filter = ({ category, genre = 'popular', history }) => {
                 </div>
             </div>
             <BestRated />
-            <Films
-                arrfilms={resp} 
-                isLoading={isLoading}
-                error={error} 
+            {resp.data !== null && <Films
+                arrfilms={resp.data} 
+                isLoading={resp.loading}
+                error={resp.error} 
                 category={typeFilm} 
-            />
+            />}
 
             {/*  Paginator System */}
 
