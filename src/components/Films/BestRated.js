@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 
 export const BestRated = () => {
-    const resp = useFetch({data: {
-        methodname: 'get',
-        type: 'movie',
-        genre: 'top_rated',
-        extraArg: null
-    }});
+    const resp = useFetch({
+        data: 
+        {
+            methodname: 'get',
+            type: 'movie',
+            genre: 'top_rated',
+            extraArg: null
+        }
+    });
 
     return (
         <Fragment>

@@ -1,42 +1,40 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { GetParams } from '../../helpers/GetParams';
+import { FormatString } from '../../helpers/GetParams';
 import { useAxios } from '../../hooks/useAxios';
+// import { useFetch } from '../../hooks/useFetch';
 
 
-export const Credits = ({ filmIdentificier, typeFilm, numShow = 5 }) => {
-
-    // const { RouteIdCredits, RouteIdFilm, RouteTypeFilm } = useParams();
+export const Credits = ({ numShow = 5 }) => {
+    const [getUrlParams, setGetUrlParams] = useState('')
 
     const location = useLocation();
 
-    let arrResponse = '';
-    const { getParams } = GetParams({
-        currentLocation: location
-    })
+    useEffect(() => {
+        setGetUrlParams(FormatString(location.pathname));
+    }, [location.pathname])
 
-    // const { variableee } = useParseParams({
-    //     currentLocation: location
+    // const resp = useFetch({
+    //     data: {
+    //         methodname: 'get',
+    //         type: getUrlParams[0],
+    //         genre: getUrlParams[1],
+    //         extraArg: 'credits'
+    //     }
     // });
 
     const { resp } = useAxios({
         methodname: 'get',
-        type: getParams[0],
-        genre: getParams[1],
+        type: getUrlParams[0],
+        genre: getUrlParams[1],
         extraArg: 'credits'
     });
-    // console.log(RouteIdCredits)
-    // console.log(RouteIdFilm)
-    // console.log(RouteTypeFilm)
-    // console.log(location)
-    console.log('el parseresponse')
-    console.log(getParams)
 
     return (
         <Fragment>
             {!!resp && numShow === 5 &&
             <div className='gl-containerMedia'>
-                <Link to={`/credits/${getParams[1]}`}>
+                <Link to={`/credits/${getUrlParams[1]}`}>
                     <p className='gl-letterStyle'>Créditos:</p>
                 </Link>
             </div>}
