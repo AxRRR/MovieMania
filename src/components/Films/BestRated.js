@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { useFetch } from '../../hooks/useFetch';
+import { useAxios } from '../../hooks/useAxios';
 
 export const BestRated = () => {
-    const resp = useFetch({
-        data: 
-        {
+    
+    const { response, isLoading } = useAxios({data: {
             methodname: 'get',
             type: 'movie',
             genre: 'top_rated',
@@ -17,13 +16,12 @@ export const BestRated = () => {
         <Fragment>
             <div className='sd-containerMain'>
                 <p>Peliculas mejor valoradas:</p>
-                {resp.data !== null && 
-                    resp.loading === false && 
-                        resp.data.results.slice(0, 5).map((movie) => (
-                    <Link to={`/movie/${movie.id}`}>
+                {response !== null && 
+                    isLoading === false && 
+                        response.results.slice(0, 5).map((movie) => (
+                    <Link key={movie.id} to={`/movie/${movie.id}`}>
                         <div 
-                            className='sd-containerInd'
-                            key={movie.id}>
+                            className='sd-containerInd'>
                             <img 
                                 src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
                                 alt={movie.title}

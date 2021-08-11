@@ -10,10 +10,10 @@ export const Description = ({ arrFilm }) => {
                     <p>Estado: {arrFilm.status}</p>
                     <div className='fd-containerSec2'>
                     {arrFilm.production_countries.map((p) => (
-                        <p className='fd-letterDesp'>Páis de Origen: {p.name}</p>
+                        <p key={p.name} className='fd-letterDesp'>Páis de Origen: {p.name}</p>
                     ))}
                     {arrFilm.production_companies.map((p) => (
-                        <p className='fd-letterDesp'>Productora/s: {p.name}</p>
+                        <p key={p.name} className='fd-letterDesp'>Productora/s: {p.name}</p>
                     ))}
                     </div>
                 </div>

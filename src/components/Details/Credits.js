@@ -1,46 +1,33 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FormatString } from '../../helpers/GetParams';
 import { useAxios } from '../../hooks/useAxios';
-// import { useFetch } from '../../hooks/useFetch';
 
 
 export const Credits = ({ numShow = 5 }) => {
-    const [getUrlParams, setGetUrlParams] = useState('')
-
     const location = useLocation();
+    const { getParams } = FormatString(location.pathname);
 
-    useEffect(() => {
-        setGetUrlParams(FormatString(location.pathname));
-    }, [location.pathname])
-
-    // const resp = useFetch({
-    //     data: {
-    //         methodname: 'get',
-    //         type: getUrlParams[0],
-    //         genre: getUrlParams[1],
-    //         extraArg: 'credits'
-    //     }
-    // });
-
-    const { resp } = useAxios({
-        methodname: 'get',
-        type: getUrlParams[0],
-        genre: getUrlParams[1],
-        extraArg: 'credits'
+    const { response } = useAxios({data: {
+            methodname: 'get',
+            type: getParams[0],
+            genre: getParams[1],
+            extraArg: 'credits',
+            typeRequest: null
+        }
     });
 
     return (
         <Fragment>
-            {!!resp && numShow === 5 &&
+            {!!response && numShow === 5 &&
             <div className='gl-containerMedia'>
-                <Link to={`/credits/${getUrlParams[1]}`}>
+                <Link to={`/credits/${getParams[1]}`}>
                     <p className='gl-letterStyle'>Créditos:</p>
                 </Link>
             </div>}
-            {resp !== null && 
+            {response !== null && 
                 <div className='cc-containerMain'>
-                    {resp.cast.slice(0, numShow).map((c) => (
+                    {response.cast.slice(0, numShow).map((c) => (
                         <div 
                             key={c.cast_id}
                             className='cc-containerCharacter'

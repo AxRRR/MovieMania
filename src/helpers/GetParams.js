@@ -1,25 +1,23 @@
-import { useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
+// import { useMemo, useState } from 'react';
+// import PropTypes from 'prop-types';
 
-export function GetParams({ currentLocation }){
-    let getParams = '';
+// export function GetParams({ currentLocation }){
+//     const [state, setstate] = useState('');
 
-    useMemo(() => FormatString(currentLocation), 
-    [currentLocation])
-
-    // useEffect(() => {
-    //     getParams = FormatString(currentLocation)
-    // }, [currentLocation])
+//     useMemo(() => setstate(FormatString(currentLocation)), 
+//     [currentLocation])
     
-    
-    console.log(getParams)
-    return { getParams }
-};
+//     console.log(state)
+//     return { state }
+// };
 
 export function FormatString(getCurrentLocation){
-    return getCurrentLocation.toLowerCase().split(/\W/g).filter(word => word.length > 1)
+    // console.log(getCurrentLocation.toLowerCase().split(/\W/g).filter(word => word.length > 1))
+    // let getParams = '';
+    let getParams = getCurrentLocation.toLowerCase().split(/\W/g).filter(word => word.length > 1)
+    return {getParams};
 }
 
-GetParams.propTypes = {
-    currentLocation: PropTypes.string.isRequired
-};
+// GetParams.propTypes = {
+//     currentLocation: PropTypes.string.isRequired
+// };

@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Modal } from '../../../ui/Modal';
 
 export const ShowMedia = ({ onClose, arrImages }) => {
-    console.log(onClose)
     return (
         <Fragment>
             <Modal onClose={onClose}>

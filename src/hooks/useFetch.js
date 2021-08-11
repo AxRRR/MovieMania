@@ -46,10 +46,7 @@ export const useFetch = ( dataParams ) => {
     return state;
 }
 
-
-
-
-export function FormatUrlCustom( data ){
+function FormatUrlCustom( data ){
     const [urlCustom, SetUrlCustom] = useState('');
 
     const apiUrl = "https://api.themoviedb.org/3/";

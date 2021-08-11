@@ -6,26 +6,27 @@ export const Media = ({ filmIdentifier, typeFilm, onShowModal }) => {
 
     const [MediaOption, setMediaOption] = useState(0)
 
-    const { resp } = useAxios({
-        methodname: 'get',
-        type: typeFilm,
-        genre: filmIdentifier,
-        extraArg: 'images',
-        lang: 'no'
+    const { response } = useAxios({data: {
+            methodname: 'get',
+            type: typeFilm,
+            genre: filmIdentifier,
+            extraArg: 'images',
+            lang: 'no'
+        }
     });
-
+    
     return (
         <Fragment>
-            {resp !== null &&
-            <div className='gl-containerMedia'>
+            {response !== null &&
+            <div key={response.id} className='gl-containerMedia'>
                 <p className='gl-letterStyle'
-                    onClick={() => setMediaOption(0)}>Imágenes de fondo: {resp.backdrops.length}</p>
+                    onClick={() => setMediaOption(0)}>Imágenes de fondo: {response.backdrops.length}</p>
                 <p className='gl-letterStyle'
-                    onClick={() => setMediaOption(1)}>Posters: {resp.posters.length}</p>
+                    onClick={() => setMediaOption(1)}>Posters: {response.posters.length}</p>
             </div>}
-            {resp !== null && MediaOption === 0 ? 
-                <Backdrops resp={resp} onShowModal={onShowModal} /> 
-                : <Posters resp={resp} onShowModal={onShowModal} /> }
+            {response !== null && MediaOption === 0 ? 
+                <Backdrops resp={response} onShowModal={onShowModal} /> 
+                : <Posters resp={response} onShowModal={onShowModal} /> }
         </Fragment>
     );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { updateTitlePage } from '../../helpers/UpdateTitle';
+import { useAxios } from '../../hooks/useAxios';
 // import queryString from 'query-string';
-import { useFetch } from '../../hooks/useFetch';
 import { usePaginator } from '../../hooks/usePaginator';
 import { BestRated } from './BestRated';
 import { Films } from './Films';
@@ -21,12 +22,13 @@ export const Filter = ({ category, genre = 'popular', history }) => {
     // const { q = '' } = queryString.parse( location.search );
 
     useEffect(() => {
-    }, [typeGenre, typeFilm])
+        updateTitlePage('MovieMania - Página Principal')
+    }, [])
 
     // Paginator Custom Hook
     const { CurrentPage, updatePageHandle } = usePaginator();
 
-    const resp = useFetch({data: {
+    const { response, error, isLoading } = useAxios({data: {
         methodname: 'get',
         type: typeFilm,
         genre: typeGenre,
@@ -59,24 +61,24 @@ export const Filter = ({ category, genre = 'popular', history }) => {
                 </div>
             </div>
             <BestRated />
-            {resp.data !== null && <Films
-                arrfilms={resp.data} 
-                isLoading={resp.loading}
-                error={resp.error} 
+            {response !== null && <Films
+                arrfilms={response} 
+                isLoading={isLoading}
+                error={error} 
                 category={typeFilm} 
             />}
 
             {/*  Paginator System */}
 
-            { !!resp && 
+            { response !== null && 
             <div className='pg__default'>
                 <button
                     className='pg__btn-default'
-                    onClick={() => updatePageHandle(2, resp.total_pages)}>Ant</button>
+                    onClick={() => updatePageHandle(2, response.total_pages)}>Ant</button>
                 <p className='pg__Current-default'>{CurrentPage}</p>
                 <button
                     className='pg__btn-default'
-                    onClick={() => updatePageHandle(1, resp.total_pages)}>Sig</button>
+                    onClick={() => updatePageHandle(1, response.total_pages)}>Sig</button>
             </div> }
 
         </div>

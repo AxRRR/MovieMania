@@ -17,6 +17,7 @@ export const Backdrops = ({ resp }) => {
                 resp.backdrops.length >= 1 && 
                     resp.backdrops.slice(0, 2).map((b) => (
                 <img 
+                    key={b.file_path}
                     src={`https://www.themoviedb.org/t/p/original/${b.file_path}`}
                     alt={b.file_path}
                     className='BigBackdrops-Preview'
@@ -46,7 +47,8 @@ export const Posters = ({ resp }) => {
             {!!resp && 
                 resp.posters.length >= 1 && 
                     resp.posters.slice(0, 8).map((b) => (
-                <img 
+                <img
+                    key={b.file_path}
                     src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${b.file_path}`}
                     alt='aaaa'
                     className='BigPosters'
