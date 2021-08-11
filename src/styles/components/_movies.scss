@@ -148,10 +148,11 @@
     color: $morado;
     padding: 8px;
     cursor: pointer;
-    // color: white;
+    text-decoration: none;
+    text-decoration-line: none;
+    outline: hidden;
     font-weight: bold;
     margin-right: 20px;
-    // height: 20px;
     border-radius: 5px;
     &:hover {
         background-color: lighten($color: $morado, $amount: 10);

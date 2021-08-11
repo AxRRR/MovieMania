@@ -1,24 +1,46 @@
 // import React from 'react';
 // import { useAxios } from './hooks/useAxios';
 
+// import { useEffect, useState } from "react";
+// import { helpHttp } from "./helpers/helpHttp";
+// import { APIUrl, MyApiKey } from "./helpers/Utils";
+
 export const Testeo = () => {
+    // const [search, setSearch] = useState(null);
+    // const [lyric, setLyric] = useState(null);
+    // const [bio, setBio] = useState(null);
+    // const [loading, setLoading] = useState(false);
+    
+    // useEffect(() => {
+    //     // if(search === null) return; //para que no renderice innecesariamente.
 
-    // const {response, error} = useAxios({data: {
-    //         methodname: 'get',
-    //         type: 'movie',
-    //         genre: 'popular',
-    //         extraArg: null,
-    //         page: 1,
-    //         typeRequest: 'list'
-    //     }
-    // })
+    //     const fetchData = async () => {
+    //         // const {artist, song}= search;
+    //         let artistUrl =`${APIUrl}/movie/436969?api_key=${MyApiKey}`;
+    //         let songUrl =`${APIUrl}/movie/385128?api_key=${MyApiKey}`;
 
-    // console.log(response)
-    // console.log(error)
+    //         //console.log("--->", artistUrl, songUrl);
+
+    //         setLoading(true);
+
+    //         //guardamos las respuesta a cada una de las peticiones
+    //         const [artistRes, songRes] = await Promise.all([
+    //             helpHttp().get(artistUrl), 
+    //             helpHttp().get(songUrl)
+    //         ]);
+
+    //         console.log("RES-->", artistRes, songRes);
+    //         setBio(artistRes);
+    //         setLyric(songRes);
+    //         setLoading(false);
+    //     };
+
+    //     fetchData();
+    // }, [])
 
     // return (
     //     <div>
-    //         {response !== null ? <h1>SIIIIIIIIIIIIIIIIII</h1> : <h1>NOOOOOOOOOOOOOOOOO</h1>}
+            
     //     </div>
     // );
 };

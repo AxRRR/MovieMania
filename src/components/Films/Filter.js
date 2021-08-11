@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { updateTitlePage } from '../../helpers/UpdateTitle';
-import { useAxios } from '../../hooks/useAxios';
+import { httpRequest } from '../../helpers/httpRequest';
+import { APIUrl, MyApiKey } from '../../helpers/Utils';
 // import queryString from 'query-string';
 import { usePaginator } from '../../hooks/usePaginator';
 import { BestRated } from './BestRated';
@@ -10,6 +10,8 @@ import { Films } from './Films';
 export const Filter = ({ category, genre = 'popular', history }) => {
     const [typeFilm, setTypeFilm] = useState(category)
     const [typeGenre, setTypeGenre] = useState(genre)
+    const [response, setResponse] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     // const location = useLocation();
     // const { pathname } = useLocation();
@@ -21,21 +23,35 @@ export const Filter = ({ category, genre = 'popular', history }) => {
 
     // const { q = '' } = queryString.parse( location.search );
 
-    useEffect(() => {
-        updateTitlePage('MovieMania - Página Principal')
-    }, [])
-
     // Paginator Custom Hook
     const { CurrentPage, updatePageHandle } = usePaginator();
 
-    const { response, error, isLoading } = useAxios({data: {
-        methodname: 'get',
-        type: typeFilm,
-        genre: typeGenre,
-        extraArg: null,
-        page: CurrentPage,
-        typeRequest: 'list'
-    }})
+    // const { response, error, isLoading } = useAxios({data: {
+    //     methodname: 'get',
+    //     type: typeFilm,
+    //     genre: typeGenre,
+    //     extraArg: null,
+    //     page: CurrentPage,
+    //     typeRequest: 'list'
+    // }})
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            let requestUrl =`${APIUrl}${typeFilm}/${typeGenre}?api_key=${MyApiKey}&language=es-ES&page=${CurrentPage}`;
+
+            setLoading(true);
+
+            const [resp] = await Promise.all([
+                httpRequest().get(requestUrl),
+            ]);
+
+            setResponse(resp);
+            setLoading(false);
+        };
+
+        fetchData();
+    }, [typeFilm, typeGenre, CurrentPage])
 
     return (
         <div className='ctg-container-main'>
@@ -61,16 +77,13 @@ export const Filter = ({ category, genre = 'popular', history }) => {
                 </div>
             </div>
             <BestRated />
-            {response !== null && <Films
+           {response !== null && <Films
                 arrfilms={response} 
-                isLoading={isLoading}
-                error={error} 
+                isLoading={loading}
                 category={typeFilm} 
             />}
 
             {/*  Paginator System */}
-
-            { response !== null && 
             <div className='pg__default'>
                 <button
                     className='pg__btn-default'
@@ -79,7 +92,7 @@ export const Filter = ({ category, genre = 'popular', history }) => {
                 <button
                     className='pg__btn-default'
                     onClick={() => updatePageHandle(1, response.total_pages)}>Sig</button>
-            </div> }
+            </div>
 
         </div>
     );
