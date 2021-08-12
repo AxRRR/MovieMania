@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { LowQualityImagen } from '../../helpers/Utils';
 
 export const Films = ({ arrfilms, isLoading, category }) => {
     useEffect(() => { }, [arrfilms, isLoading, category])
@@ -14,7 +15,7 @@ export const Films = ({ arrfilms, isLoading, category }) => {
                 <div className='containerMovie' 
                     key={movie.id}>
                     <img 
-                        src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
+                        src={`${LowQualityImagen}${movie.poster_path}`}
                         alt={movie.title}
                         className='movie poster'
                     />

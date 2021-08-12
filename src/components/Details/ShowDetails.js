@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { ContainerMain, ContainerMainNoFlex } from '../../helpers/ContainerMain';
+import { OriginalQualityImage } from '../../helpers/Utils';
 // import { updateTitlePage } from '../../helpers/UpdateTitle';
 import { useAxios } from '../../hooks/useAxios';
 import { Credits } from './Credits';
@@ -52,13 +53,13 @@ export const ShowDetails = ({ onShowModal }) => {
                     {response !== null && <div className='dt-containerImage'>
                         {response.poster_path !== null ? 
                         <img 
-                            src={`https://www.themoviedb.org/t/p/original/${response.poster_path}`}
+                            src={`${OriginalQualityImage}${response.poster_path}`}
                             alt={response.name}
                             className='Bigposter'
                         />
                         :
                         <img 
-                            src={`https://www.themoviedb.org/t/p/original/${response.backdrop_path}`}
+                            src={`${OriginalQualityImage}${response.backdrop_path}`}
                             alt={response.name}
                             className='Bigposter'
                         />}

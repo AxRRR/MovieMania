@@ -115,10 +115,24 @@
 
 .cc-containerMain { 
     display: flex;
+    &--complete {
+        float: left;
+        width: 100%;
+    }
 }
+
+
 
 .cc-containerCharacter {
     width: 19%;
+    &--complete {
+        width: 24%;
+        height: 450px;
+        margin-bottom: 15px;
+        margin-left: 7.5px;
+        text-align: center;
+        float: left;
+    }
 }
 
 .BigBackdrops {
@@ -134,6 +148,13 @@
 }
 
 .BigPosters {
+    &--credits {
+        width: 100%;
+        height: 80%;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
     &:hover {
         opacity: 0.8;
     }

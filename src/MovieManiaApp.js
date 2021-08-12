@@ -4,7 +4,7 @@ import { ContainerMain } from './helpers/ContainerMain'
 import { Filter } from './components/Films/Filter';
 import { Route, Switch } from 'react-router-dom';
 import { ShowDetails } from './components/Details/ShowDetails';
-import { Credits, CreditsComplet } from './components/Details/Credits';
+import { Credits } from './components/Details/Credits';
 import { Testeo } from './Testeo';
 
 export const MovieManiaApp = () => {

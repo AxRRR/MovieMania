@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { LowQualityImagen, OriginalQualityImage } from '../../../helpers/Utils';
 import { ShowMedia } from '../ui/ShowMedia';
 
 // Backdrops Structure 
@@ -18,11 +19,11 @@ export const Backdrops = ({ resp }) => {
                     resp.backdrops.slice(0, 2).map((b) => (
                 <img 
                     key={b.file_path}
-                    src={`https://www.themoviedb.org/t/p/original/${b.file_path}`}
+                    src={`${OriginalQualityImage}${b.file_path}`}
                     alt={b.file_path}
                     className='BigBackdrops-Preview'
                     onClick={() => 
-                        saveImageHandler(`https://www.themoviedb.org/t/p/original/${b.file_path}`)}
+                        saveImageHandler(`${OriginalQualityImage}${b.file_path}`)}
                 />
             ))}
             {showModal && <ShowMedia 
@@ -49,10 +50,10 @@ export const Posters = ({ resp }) => {
                     resp.posters.slice(0, 8).map((b) => (
                 <img
                     key={b.file_path}
-                    src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${b.file_path}`}
+                    src={`${LowQualityImagen}${b.file_path}`}
                     alt='aaaa'
                     className='BigPosters'
-                    onClick={() => saveImageHandler(`https://www.themoviedb.org/t/p/w220_and_h330_face/${b.file_path}`)}
+                    onClick={() => saveImageHandler(`${LowQualityImagen}${b.file_path}`)}
                 />
             ))}
             {showModal && <ShowMedia 
