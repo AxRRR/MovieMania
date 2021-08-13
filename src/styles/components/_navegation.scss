@@ -7,64 +7,58 @@
     cursor: pointer;
 }
 
+// Navbar Styles
 .navbar {
     list-style: none;
     width: 50%;
-    // background-color: antiquewhite;
     margin-right: auto;
     margin-left: auto;
     display: flex;
     height: 30px;
+    &_stylelist {
+        flex-direction: row;
+    }
+    &_img {
+        float: left;
+        width: 50%;
+        height: 135%;
+    }
+    &_items {
+        @extend %LettlerStyle;
+        height: auto;
+        width: 100px;
+        text-align: center;
+        color: $morado;
+        font-size: 13px;
+        float: right;
+    }
 }
 
-.stylelist {
-    flex-direction: row;
+// Filter/Categories homepage
+.ctg {
+    &_Container {
+        width: 100%;
+        height: auto;
+    }
+    &_filter {
+        display: flex;
+        background-color: $morado;
+        width: 100%;
+        border-radius: 2px;
+    }
+    &_itemsWhite {
+        @extend %LettlerStyle;
+        color: white;
+    }
+    &_itemsNormal {
+        @extend %LettlerStyle;
+    }
+    &_containerCategories {
+        display: flex;
+        background-color: whitesmoke;
+        border-radius: 2px;
+    }
 }
 
-.items {
-    @extend %LettlerStyle;
-    // background-color: aqua;
-    height: auto;
-    width: 100px;
-    text-align: center;
-    color: $morado;
-    font-size: 13px;
-    // margin-left: 0px;
-    float: right;
-}
-
-.img {
-    float: left;
-    width: 50%;
-    height: 135%;
-}
-
-.ctg-container-main {
-    // background-color: $morado;
-    width: 100%;
-    height: auto;
-}
-
-.ctg-container-filter {
-    display: flex;
-    background-color: $morado;
-    width: 100%;
-    border-radius: 2px;
-}
-
-.ctg-container-categories {
-    display: flex;
-    background-color: whitesmoke;
-    border-radius: 2px;
-}
-
-.ctg-items {
-    @extend %LettlerStyle;
-}
-
-.ctg-items-white {
-    @extend %LettlerStyle;
-    color: white;
-}
     
 

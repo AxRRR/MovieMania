@@ -72,7 +72,7 @@ export const Credits = ({ numShow = 5 }) => {
                         {response.cast.slice(0, response.cast.length-1).map((c) => (
                             <div 
                                 key={c.cast_id}
-                                className='cc-containerCharacter--complete'
+                                className='cc-containerCharacter_complete'
                             >
                                 {c.profile_path !== null ?
                                 <img 

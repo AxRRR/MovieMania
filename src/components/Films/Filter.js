@@ -26,15 +26,6 @@ export const Filter = ({ category, genre = 'popular', history }) => {
     // Paginator Custom Hook
     const { CurrentPage, updatePageHandle } = usePaginator();
 
-    // const { response, error, isLoading } = useAxios({data: {
-    //     methodname: 'get',
-    //     type: typeFilm,
-    //     genre: typeGenre,
-    //     extraArg: null,
-    //     page: CurrentPage,
-    //     typeRequest: 'list'
-    // }})
-
     useEffect(() => {
 
         const fetchData = async () => {
@@ -54,25 +45,25 @@ export const Filter = ({ category, genre = 'popular', history }) => {
     }, [typeFilm, typeGenre, CurrentPage])
 
     return (
-        <div className='ctg-container-main'>
+        <div className='ctg_Container'>
             <div>
-                <div className='ctg-container-filter'>
+                <div className='ctg_filter'>
                     <p 
-                        className='ctg-items-white'
+                        className='ctg_itemsWhite'
                         onClick={() => setTypeFilm('movie')}>Peliculas</p>
                     <p 
-                        className='ctg-items-white'
+                        className='ctg_itemsWhite'
                         onClick={() => setTypeFilm('tv')}>Series de TV</p>
                 </div>
-                <div className='ctg-container-categories'>
+                <div className='ctg_containerCategories'>
                     <p 
-                        className='ctg-items'
+                        className='ctg_itemsNormal'
                         onClick={() => setTypeGenre('popular')}>Populares</p>
                     <p 
-                        className='ctg-items'
+                        className='ctg_itemsNormal'
                         onClick={() => setTypeGenre('upcoming')}>Próximamente</p>
                     <p 
-                        className='ctg-items'
+                        className='ctg_itemsNormal'
                         onClick={() => setTypeGenre('top_rated')}>Mejor valoradas</p>
                 </div>
             </div>

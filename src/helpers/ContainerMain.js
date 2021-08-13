@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 export const ContainerMain = props => {
     return (
         <Fragment>
-            <section className='containerMainFlex'>{props.children}</section>
+            <section className='containerMain_Flex'>{props.children}</section>
         </Fragment>
     );
 };

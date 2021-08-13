@@ -6,16 +6,16 @@ export const Nav = () => {
     return (
         <Fragment>
             <nav>
-                <ul className='navbar stylelist'>
+                <ul className='navbar navbar_stylelist'>
                     <li>
                         <Link to='/films'><img 
                             src={Logo} 
                             alt={'LogoMM'}
-                            className='navbar img'
+                            className='navbar_img'
                         /></Link>
                     </li>
-                    <li><p className='navbar items'>Home</p></li>
-                    <li><p className='navbar items'>Account</p></li>
+                    <li><p className='navbar_items'>Home</p></li>
+                    <li><p className='navbar_items'>Account</p></li>
                 </ul>
             </nav>
         </Fragment>
