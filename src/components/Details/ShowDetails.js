@@ -1,35 +1,47 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ContainerMain, ContainerMainNoFlex } from '../../helpers/ContainerMain';
-import { OriginalQualityImage } from '../../helpers/Utils';
+import { httpRequest } from '../../helpers/httpRequest';
+import { APIUrl, MyApiKey, OriginalQualityImage } from '../../helpers/Utils';
 // import { updateTitlePage } from '../../helpers/UpdateTitle';
-import { useAxios } from '../../hooks/useAxios';
 import { Credits } from './Credits';
 import { Description } from './Description';
 import { Media } from './Media';
 
 export const ShowDetails = ({ onShowModal }) => {
     const { RouteTypeFilm, RouteIdFilm } = useParams();
-    
-    const { response, isLoading } = useAxios({data: {
-            methodname: 'get',
-            type: RouteTypeFilm,
-            genre: RouteIdFilm,
-            extraArg: null,
-            typeRequest: null
-        }
-    });
+
+    const [response, setResponse] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            let requestUrl =`${APIUrl}${RouteTypeFilm}/${RouteIdFilm}?api_key=${MyApiKey}&language=es-ES`;
+
+            setLoading(true);
+
+            const [resp] = await Promise.all([
+                httpRequest().get(requestUrl),
+            ]);
+
+            setResponse(resp);
+            setLoading(false);
+        };
+
+        fetchData();
+    }, [RouteTypeFilm, RouteIdFilm])
     
     return (
         <Fragment>
             {/* {error && <p>La página a la que intentas acceder no existe. Error 404</p>} */}
-            {isLoading === true && <h1>Loading</h1>}
+            {loading === true && <h1>Loading</h1>}
             <ContainerMain>
                 {response !== null && RouteTypeFilm === 'movie' ?
                     <div className='dt_containerMain'>
                         <div className='dt_containerImage'>
                         <img 
-                            src={`https://www.themoviedb.org/t/p/original/${response.poster_path}`}
+                            src={`${OriginalQualityImage}${response.poster_path}`}
                             alt={response.title}
                             className='dt_bigPoster'
                         />

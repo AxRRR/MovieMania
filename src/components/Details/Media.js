@@ -1,22 +1,34 @@
-import React, { Fragment, useState } from 'react';
-import { useAxios } from '../../hooks/useAxios';
+import React, { Fragment, useEffect, useState } from 'react';
+import { httpRequest } from '../../helpers/httpRequest';
+import { APIUrl, MyApiKey } from '../../helpers/Utils';
 import { Backdrops, Posters } from './helpers/MediaOptions';
 
 export const Media = ({ filmIdentifier, typeFilm, onShowModal }) => {
+    const [MediaOption, setMediaOption] = useState(0)    
+    const [response, setResponse] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    const [MediaOption, setMediaOption] = useState(0)
+    useEffect(() => {
 
-    const { response } = useAxios({data: {
-            methodname: 'get',
-            type: typeFilm,
-            genre: filmIdentifier,
-            extraArg: 'images',
-            lang: 'no'
-        }
-    });
-    
+        const fetchData = async () => {
+            let requestUrl =`${APIUrl}${typeFilm}/${filmIdentifier}/images?api_key=${MyApiKey}`;
+
+            setLoading(true);
+
+            const [resp] = await Promise.all([
+                httpRequest().get(requestUrl),
+            ]);
+
+            setResponse(resp);
+            setLoading(false);
+        };
+
+        fetchData();
+    }, [filmIdentifier, typeFilm])
+
     return (
         <Fragment>
+            {loading}
             {response !== null &&
             <div key={response.id} className='gl_containerMedia'>
                 <p className='gl_letterStyle'

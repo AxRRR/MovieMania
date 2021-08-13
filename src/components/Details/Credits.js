@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ContainerMain } from '../../helpers/ContainerMain';
+import { FormatParam } from '../../helpers/FormatParamsUrl';
 import { FormatString } from '../../helpers/GetParams';
 import { httpRequest } from '../../helpers/httpRequest';
 import { APIUrl, MyApiKey } from '../../helpers/Utils';
@@ -86,7 +87,9 @@ export const Credits = ({ numShow = 5 }) => {
                                     className='cc_bigPosters--credits'
                                 />}
                                 <p>{c.character}</p>
-                                <p>{c.name}</p>
+                                <Link to={`/actor/${FormatParam(c.name)}/${c.id}`}>
+                                    <p>{c.name}</p>
+                                </Link>
                             </div>
                         ))}
                     </div>
