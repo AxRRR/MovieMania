@@ -13,6 +13,7 @@
     text-overflow: ellipsis;
 }
 
+// Films Component Styles
 .fm {
     width: 70%;
     height: auto;
@@ -39,3 +40,21 @@
         @extend %letterStyle;
     }
 }
+
+// Best Rated Component Styles
+.sd {
+    &_containerMain {
+        width: 30%;
+        float: right;
+    }
+    &_containerInd {
+        display: flex;
+        margin-bottom: 10px;
+    }
+    &_poster {
+        float: left;
+        width: 17%;
+        height: 25%;
+    }
+}
+

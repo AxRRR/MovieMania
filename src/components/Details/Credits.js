@@ -44,17 +44,17 @@ export const Credits = ({ numShow = 5 }) => {
         <Fragment>
             {loading === true && <p>Cargando...</p>}
             {response !== null && numShow === 5 && creditsParams.length === 2 &&
-            <div className='gl-containerMedia'>
+            <div className='gl_containerMedia'>
                 <Link to={`/${creditsParams[0]}/${creditsParams[1]}/credits`}>
-                    <p className='gl-letterStyle'>Créditos:</p>
+                    <p className='gl_letterStyle'>Créditos:</p>
                 </Link>
             </div>}
             {response !== null && creditsParams.length === 2 &&
-                <div className='cc-containerMain'>
+                <div className='cc_containerMain'>
                     {response.cast.slice(0, numShow).map((c) => (
                         <div 
                             key={c.cast_id}
-                            className='cc-containerCharacter'
+                            className='cc_containerCharacter'
                         >
                             <img 
                                 src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${c.profile_path}`}
@@ -68,22 +68,22 @@ export const Credits = ({ numShow = 5 }) => {
                 }
             {response !== null && creditsParams.length === 3 && 
                 <ContainerMain>
-                    <div className='cc-containerMain--complete'>
+                    <div className='cc_containerMain--complete'>
                         {response.cast.slice(0, response.cast.length-1).map((c) => (
                             <div 
                                 key={c.cast_id}
-                                className='cc-containerCharacter_complete'
+                                className='cc_containerCharacter_complete'
                             >
                                 {c.profile_path !== null ?
                                 <img 
                                     src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${c.profile_path}`}
                                     alt={c.character}
-                                    className='BigPosters--credits'
+                                    className='cc_bigPosters--credits'
                                 /> :
                                 <img 
                                     src={'https://www.diabetes.ie/wp-content/uploads/2017/02/no-image-available-250x417.png'}
                                     alt={c.character}
-                                    className='BigPosters--credits'
+                                    className='cc_bigPosters--credits'
                                 />}
                                 <p>{c.character}</p>
                                 <p>{c.name}</p>

@@ -11,7 +11,7 @@ export const ShowMedia = ({ onClose, arrImages }) => {
                 <img 
                     src={arrImages}
                     alt={arrImages.file_path}
-                    className='BigBackdrops-Preview'
+                    className='bigBackdrops--Preview'
                 />
             {/* </div> */}
             </Modal>

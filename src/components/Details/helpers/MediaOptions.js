@@ -21,7 +21,7 @@ export const Backdrops = ({ resp }) => {
                     key={b.file_path}
                     src={`${OriginalQualityImage}${b.file_path}`}
                     alt={b.file_path}
-                    className='BigBackdrops-Preview'
+                    className='bigBackdrops--Preview'
                     onClick={() => 
                         saveImageHandler(`${OriginalQualityImage}${b.file_path}`)}
                 />

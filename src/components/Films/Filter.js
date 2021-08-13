@@ -75,13 +75,13 @@ export const Filter = ({ category, genre = 'popular', history }) => {
             />}
 
             {/*  Paginator System */}
-            <div className='pg__default'>
+            <div className='pg_main'>
                 <button
-                    className='pg__btn-default'
+                    className='pg_main_btn-default'
                     onClick={() => updatePageHandle(2, response.total_pages)}>Ant</button>
-                <p className='pg__Current-default'>{CurrentPage}</p>
+                <p className='pg_main_Current-default'>{CurrentPage}</p>
                 <button
-                    className='pg__btn-default'
+                    className='pg_main_btn-default'
                     onClick={() => updatePageHandle(1, response.total_pages)}>Sig</button>
             </div>
 

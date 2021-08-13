@@ -18,10 +18,10 @@ export const Media = ({ filmIdentifier, typeFilm, onShowModal }) => {
     return (
         <Fragment>
             {response !== null &&
-            <div key={response.id} className='gl-containerMedia'>
-                <p className='gl-letterStyle'
+            <div key={response.id} className='gl_containerMedia'>
+                <p className='gl_letterStyle'
                     onClick={() => setMediaOption(0)}>Imágenes de fondo: {response.backdrops.length}</p>
-                <p className='gl-letterStyle'
+                <p className='gl_letterStyle'
                     onClick={() => setMediaOption(1)}>Posters: {response.posters.length}</p>
             </div>}
             {response !== null && MediaOption === 0 ? 

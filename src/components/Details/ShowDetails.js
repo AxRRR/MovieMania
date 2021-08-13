@@ -26,22 +26,22 @@ export const ShowDetails = ({ onShowModal }) => {
             {isLoading === true && <h1>Loading</h1>}
             <ContainerMain>
                 {response !== null && RouteTypeFilm === 'movie' ?
-                    <div className='dt-containerMain'>
-                        <div className='dt-containerImage'>
+                    <div className='dt_containerMain'>
+                        <div className='dt_containerImage'>
                         <img 
                             src={`https://www.themoviedb.org/t/p/original/${response.poster_path}`}
                             alt={response.title}
-                            className='Bigposter'
+                            className='dt_bigPoster'
                         />
                     </div>
-                    <div className='dt-containerDetails'>
-                        <p className='dt-title'>{response.title}({response.release_date.slice(0, 4)})</p>
+                    <div className='dt_containerDetails'>
+                        <p className='dt_title'>{response.title}({response.release_date.slice(0, 4)})</p>
                         <p className=''>{response.release_date}  valoración: {response.vote_average}</p>
-                        <div className='dt-genres'>
+                        <div className='dt_genres'>
                             {response.genres.map((g) => (
                                 <p 
                                     key={g.name} 
-                                    className='dt-genresStyle'>{g.name}</p>
+                                    className='dt_genresStyle'>{g.name}</p>
                             ))}
                         </div>
                         <p className=''>{response.overview}</p>
@@ -49,27 +49,27 @@ export const ShowDetails = ({ onShowModal }) => {
                 </div> 
                 :
                 // If not be a movie... change render to TV Series
-                <div className='dt-containerMain'>
-                    {response !== null && <div className='dt-containerImage'>
+                <div className='dt_containerMain'>
+                    {response !== null && <div className='dt_containerImage'>
                         {response.poster_path !== null ? 
                         <img 
                             src={`${OriginalQualityImage}${response.poster_path}`}
                             alt={response.name}
-                            className='Bigposter'
+                            className='dt_bigPoster'
                         />
                         :
                         <img 
                             src={`${OriginalQualityImage}${response.backdrop_path}`}
                             alt={response.name}
-                            className='Bigposter'
+                            className='dt_bigPoster'
                         />}
                     </div>}
-                {response !== null && <div className='dt-containerDetails'>
-                    <p className='dt-title'>{response.name}({response.first_air_date.slice(0, 4)})</p>
+                {response !== null && <div className='dt_containerDetails'>
+                    <p className='dt_title'>{response.name}({response.first_air_date.slice(0, 4)})</p>
                     <p className=''>{response.first_air_date}  episodios: {response.number_of_episodes}</p>
-                    <div className='dt-genres'>
+                    <div className='dt_genres'>
                         {response.genres.map((g) => (
-                            <p key={g.name} className='dt-genresStyle'>{g.name}</p>
+                            <p key={g.name} className='dt_genresStyle'>{g.name}</p>
                         ))}
                     </div>
                     <p className=''>{response.overview}</p>
