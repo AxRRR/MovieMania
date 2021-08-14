@@ -1,16 +1,16 @@
 export function getAge(ageToGet, yearOfDeath = null){
-    let sendYear = null;
+    let sendAge = null;
 
     // If the Actor is dead... we change the operation.
     if(yearOfDeath !== null){
-        sendYear = yearOfDeath - ageToGet;
+        sendAge = yearOfDeath - ageToGet;
     }
     // If still alive...
     else{
         const CurrentDate = new Date();
         const CurrentYear = CurrentDate.getFullYear();
 
-        sendYear = CurrentYear - ageToGet;
+        sendAge = CurrentYear - ageToGet;
     }
-    return sendYear;
+    return sendAge;
 }

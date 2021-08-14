@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { httpRequest } from '../../helpers/httpRequest';
 import { APIUrl, MyApiKey } from '../../helpers/Utils';
 
-export const Appearances = ({ Actor }) => {
+export const ActorMedia = ({ Actor }) => {
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -24,11 +24,11 @@ export const Appearances = ({ Actor }) => {
         fetchData();
     }, [Actor])
 
-    // console.log('=>>', Actor, Actor.idActor)
-
     return (
-        <div>
-            <p className='inf_containerMain'>Apariciones de este actor sonnnn</p>
-        </div>
+        <Fragment>
+            {!!response && response.profiles.slice(0, 2).map((i) => <div>
+                {i.file_path}
+            </div>)}
+        </Fragment>
     );
 };

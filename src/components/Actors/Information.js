@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { getAge } from '../../helpers/GetAge';
 import { httpRequest } from '../../helpers/httpRequest';
 import { APIUrl, MyApiKey, OriginalQualityImage } from '../../helpers/Utils';
+import { ActorMedia } from './ActorMedia';
 import { Biography } from './Biography';
 
 export const Information = ({ Actor }) => {
@@ -38,28 +39,32 @@ export const Information = ({ Actor }) => {
                             alt={Actor.name}
                             className='inf_profileImage'
                         />
-                        <p>Fecha de nacimiento:</p>
-                        <p>{response.birthday}</p>
+                        <p className='inf_text--title'>Información Personal</p>
+                        <p className='inf_text--bold'>Fecha de nacimiento:</p>
+                        <p className='inf_text--normal'>{response.birthday}</p>
                         {!!response.deathday && <div>
-                            <p>Fallecimiento:</p>
-                            <p>{response.deathday}</p>
+                            <p className='inf_text--normal'>Fallecimiento:</p>
+                            <p className='inf_text--normal'>{response.deathday}</p>
                             </div>
                         }
-                        <p>Edad:</p>
+                        <p className='inf_text--bold'>Edad:</p>
                         {!!response.deathday ? 
-                             <p>{getAge(response.birthday.slice(0, 4), 
+                             <p className='inf_text--normal'>{getAge(response.birthday.slice(0, 4), 
                                 response.deathday.slice(0, 4)) + ' años'}</p> :
-                                <p>{getAge(response.birthday.slice(0, 4)) + ' años'}</p>
+                                <p className='inf_text--normal'>{getAge(response.birthday.slice(0, 4)) + ' años'}</p>
                                 
                         }
-                        <p>Sexo:</p>
-                        {response.gender === 1 ? <p>Femenino</p> : <p>Masculino</p>}
-                        <p>Lugar de nacimiento:</p>
-                        <p>{response.place_of_birth}</p>
+                        <p className='inf_text--bold'>Sexo:</p>
+                        {response.gender === 1 ? <p className='inf_text--normal'>Femenino</p> : <p className='inf_text--normal'>Masculino</p>}
+                        <p className='inf_text--bold'>Lugar de nacimiento:</p>
+                        <p className='inf_text--normal'>{response.place_of_birth}</p>
                     </div>
                     <Biography 
                         bioActor={response.biography}
                         nameActor={response.name}
+                    />
+                    <ActorMedia
+                        Actor={Actor}
                     />
                 </div>
             }
