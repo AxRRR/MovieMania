@@ -18,13 +18,13 @@ export const usePaginator = () => {
                 break;
 
             case 2:
-                if(CurrentPage <= 0){
-                    setCurrentPage(CurrentPage-1);
-                    setisFinalPage(false);
-                }
-                else{
+                if(CurrentPage <= 1){
                     setisFinalPage(true);
                     setCurrentPage(1);
+                }
+                else{
+                    setCurrentPage(CurrentPage-1);
+                    setisFinalPage(false);   
                 }
                 break;
         
