@@ -19,7 +19,6 @@ export const Information = ({ Actor }) => {
                 httpRequest().get(requestUrl),
             ]);
 
-            console.log(resp)
             setResponse(resp);
             setLoading(false);
         };
@@ -59,13 +58,15 @@ export const Information = ({ Actor }) => {
                         <p className='inf_text--bold'>Lugar de nacimiento:</p>
                         <p className='inf_text--normal'>{response.place_of_birth}</p>
                     </div>
-                    <Biography 
-                        bioActor={response.biography}
-                        nameActor={response.name}
-                    />
-                    <ActorMedia
-                        Actor={Actor}
-                    />
+                    <div>
+                        <Biography 
+                            bioActor={response.biography}
+                            nameActor={response.name}
+                        />
+                        <ActorMedia
+                            Actor={Actor}
+                        />
+                    </div>
                 </div>
             }
         </Fragment>

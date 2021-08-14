@@ -13,7 +13,7 @@
 
 .inf {
     &_containerMain {
-        background-color: aqua;
+        // background-color: aqua;
         display: flex;
         width: 100%;
     }
@@ -48,11 +48,14 @@
 
 .bio {
     &_containerMain {
-        // background-color: blueviolet;
+        @extend %descriptionStyle;
+        white-space: normal; 
         width: 97%;
+        height: 375px;
         text-align: left;
-        float: right;
+        float: left;
         padding: 5px;
+        margin-bottom: 40px;
     }
     &_text {
         @extend %letterStyle;
@@ -61,5 +64,30 @@
             font-weight: bold;
             margin-top: 0px;
         }
+    }
+}
+
+// Media Component Style
+.med {
+    &_containerMain {
+        display: flex;
+        // background-color: antiquewhite;
+        width: 97%;
+        height: 220px;
+        // text-align: left;
+        float: left;
+        padding: 5px;
+    }
+    &_containerImages {
+        width: 150px;
+        height: 220px;
+        margin-left: 10px;
+        // float: left;
+    }
+    &_image {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        // float: left;
     }
 }

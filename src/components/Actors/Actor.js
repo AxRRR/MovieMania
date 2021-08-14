@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ContainerMain } from '../../helpers/ContainerMain';
+import { ContainerMain, ContainerMainNoFlex } from '../../helpers/ContainerMain';
 import { FormatParam } from '../../helpers/FormatParamsUrl';
 import { FormatString } from '../../helpers/GetParams';
 import { Appearances } from './Appearances';
@@ -19,13 +19,18 @@ export const Actor = () => {
                             name: FormatParam(getParams[1] + ' ' + getParams[2]),
                             idActor: getParams[3]
                         }} />
+                    
+                </section>
+            </ContainerMain>
+            <ContainerMainNoFlex>
+                <section>
                     <Appearances 
                         Actor={{
                             name: FormatParam(getParams[1] + ' ' + getParams[2]),
                             idActor: getParams[3]
                         }} />
                 </section>
-            </ContainerMain>
+            </ContainerMainNoFlex>
         </Fragment>
     );
 };
