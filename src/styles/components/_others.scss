@@ -12,11 +12,13 @@
         float: left;
     }
     &_textStyle {
-        width: 710px;
-        padding-left: 5px;
+        font-size: 22px;
+        width: 715px;
+        font-weight: bold;
+        text-align: left;
         float: right;
         margin-top: 0px;
-        height: 20px;
+        height: 22px;
     }
     &_DescriptionStyle {
         width: 77%;

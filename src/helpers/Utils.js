@@ -2,3 +2,5 @@
     export const MyApiKey = '65321490780e7762cb0121f9c9afeb23';
     export const OriginalQualityImage = 'https://www.themoviedb.org/t/p/original/';
     export const LowQualityImagen = 'https://www.themoviedb.org/t/p/w220_and_h330_face/';
+    export const errorMsg = '#FF0000';
+    export const successMsg = '#2EC300';
