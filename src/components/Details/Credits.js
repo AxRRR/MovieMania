@@ -62,7 +62,9 @@ export const Credits = ({ numShow = 5 }) => {
                                 alt={c.character}
                             />
                             <p>{c.character}</p>
-                            <p>{c.name}</p>
+                            <Link to={`/actor/${FormatParam(c.name)}/${c.id}`}>
+                                <p>{c.name}</p>
+                            </Link>
                         </div>
                     ))}
                 </div>

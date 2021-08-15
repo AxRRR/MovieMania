@@ -7,6 +7,8 @@ import { ShowDetails } from './components/Details/ShowDetails';
 import { Credits } from './components/Details/Credits';
 import { Testeo } from './Testeo';
 import { Actor } from './components/Actors/Actor';
+import { Footer } from './layout/Footer';
+import { Find } from './components/Find/Find';
 
 export const MovieManiaApp = () => {
     return (
@@ -14,6 +16,7 @@ export const MovieManiaApp = () => {
             <header>
                 <Nav />
             </header>
+            
             <Switch>
                 <Route exact path='/films'>
                     <ContainerMain>
@@ -38,7 +41,13 @@ export const MovieManiaApp = () => {
                 <Route exact path='/testeo'>
                     <Testeo />
                 </Route>
+                <Route exact path='/search'>
+                    <Find />
+                </Route>
             </Switch>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     );
 };
