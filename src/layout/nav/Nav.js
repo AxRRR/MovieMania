@@ -39,7 +39,9 @@ export const Nav = () => {
                         </form>
                     </li>
                     <li className='navbar_itemsStyle'>
-                        <p className='navbar_items'>Mi lista</p>
+                        <Link to='/mylist'>
+                            <p className='navbar_items'>Mi lista</p>
+                        </Link>
                     </li>
                     <li className='navbar_itemsStyle'>
                         <p className='navbar_items'>Iniciar sesión</p>

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { Link, useLocation } from 'react-router-dom';
 import { APIUrl, errorMsg, MyApiKey, OriginalQualityImage } from '../../helpers/Utils';
@@ -6,6 +6,7 @@ import { httpRequest } from '../../helpers/httpRequest';
 import { ContainerMain } from '../../helpers/ContainerMain';
 import { usePaginator } from '../../hooks/usePaginator';
 import { InfoMessage } from '../../ui/InfoMessage';
+import { MyListContext } from '../../contexts/MyList';
 
 export const Find = () => {
     const [response, setResponse] = useState(null);
@@ -14,8 +15,12 @@ export const Find = () => {
     // Paginator Custom Hook
     const { CurrentPage, updatePageHandle } = usePaginator();
 
+    // Get query of the URL
     const Location = useLocation();
     const { q = '' } = queryString.parse( Location.search );
+
+    // My List Context
+    const { myList, setMyList } = useContext( MyListContext );
 
     useEffect(() => {
         if( q === '') return;
@@ -43,34 +48,52 @@ export const Find = () => {
                     {loading === true && <p>Cargando...</p>}
                     {!!response && <p>Resultados de búsqueda:  `"{q}"` - resultados: {response.total_results}</p>}
                     {!!response && response.results.slice(0, 20).map((r) => 
-                    <Link to={`/${r.media_type}/${r.id}`}>
-                        <div 
-                        key={r.id}
-                        className='find_containerMain'>
-                            <div>
-                                <img 
-                                    src={`${OriginalQualityImage}${r.poster_path}`}
-                                    className='find_poster'
-                                    alt={r.id}
-                                    />
+                        <div>
+                            <Link to={`/${r.media_type}/${r.id}`}><div 
+                            key={r.id}
+                            className='find_containerMain'>
+                                <div>
+                                    <img 
+                                        src={`${OriginalQualityImage}${r.poster_path}`}
+                                        className='find_poster'
+                                        alt={r.id}
+                                        />
+                                </div>
+                                <div>
+                                    {r.media_type === 'movie' ? 
+                                        <p className='find_textStyle'>{r.title}</p> : 
+                                        <p className='find_textStyle'>{r.name}</p>}
+                                </div>
+                                <div>
+                                    {r.overview === "" ? 
+                                        <p className='find_DescriptionStyle'>Sin descripción disponible</p> : 
+                                        <p className='find_DescriptionStyle'>{r.overview}</p>}
+                                </div>
                             </div>
-                            <div>
-                                {r.media_type === 'movie' ? 
-                                    <p className='find_textStyle'>{r.title}</p> : 
-                                    <p className='find_textStyle'>{r.name}</p>}
-                            </div>
-                            <div>
-                                {r.overview === "" ? 
-                                    <p className='find_DescriptionStyle'>Sin descripción disponible</p> : 
-                                    <p className='find_DescriptionStyle'>{r.overview}</p>}
+                            </Link>
+                            <div className='list_containerMain'>
+                            {r.media_type === 'movie' ?
+                                <button 
+                                    className='list_btnStyle'
+                                    onClick={() => setMyList([...myList, {
+                                        id: r.id,
+                                        mediatype: r.media_type,
+                                        name: r.title
+                                }])}>Agregar a mi lista</button> :
+                                <button 
+                                    className='list_btnStyle'
+                                    onClick={() => setMyList([...myList, {
+                                        id: r.id,
+                                        mediatype: r.media_type,
+                                        name: r.name
+                                }])}>Agregar a mi lista</button>}
                             </div>
                         </div>
-                    </Link>
                     )}
                     {/*  Paginator System */}
                     
                     {loading === false}
-                    {!!response && response.total_pages >= 1 ? <div className='pg_main'>
+                    {!!response && response.total_pages >= 2 ? <div className='pg_main'>
                         <button
                             className='pg_main_btn-default'
                             onClick={() => updatePageHandle(2, response.total_pages)}>Ant</button>
@@ -82,7 +105,6 @@ export const Find = () => {
                         <InfoMessage theme={errorMsg}><p>Error: No encontramos ningún resultado.</p></InfoMessage>}
                     </div>
                 </ContainerMain>
-                {/* <InfoMessage /> */}
             </Fragment>
             );
 };

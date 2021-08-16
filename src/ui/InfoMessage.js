@@ -5,14 +5,17 @@ export const InfoMessage = (props) => {
 
     useEffect(() => {
         setisActive(true);
-        setTimeout(() => {
-            setisActive(false);
-        }, 5000);
+            setTimeout(() => {
+                setisActive(false);
+            }, 5000);
     }, [props])
 
     return (
         <Fragment>
-            {isActive === true && <div className='msg_containerMain' style={{backgroundColor: props.theme}}>
+            {isActive === true && 
+            <div 
+                className='msg_containerMain' 
+                style={{backgroundColor: props.theme}}>
                 {props.children}
             </div>}
         </Fragment>
