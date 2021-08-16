@@ -32,10 +32,57 @@
 
 .list {
     &_containerMain {
-        // background-color: aquamarine;
         width: 100%;
         margin-top: 0px;
         margin-bottom: 20px;
+        &--small {
+            width: 70%;
+            padding: 5px;
+            margin-right: 25px;
+        }
+        &--supersmall {
+            width: 25%;
+            height: 330px;
+            background-color: white;
+            float: right;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        &--individual {
+            background-color: white;
+            width: 100%;
+            height: 145px;
+            margin-bottom: 20px;
+            padding: 5px;
+        }
+    }
+    &_text {
+        padding: 5px;
+        padding-left: 6px;
+        width: 59%;
+        float: left;
+        margin-top: 1px;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 95px;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &--vinculo {
+            text-decoration: underline;
+            cursor: pointer;
+            height: auto;
+            margin-left: 5px;
+            float: right;
+            color: #0645AD;
+            margin-top: 0px;
+        }
+    }
+    &_poster {
+        width: 250px;
+        float: left;
+        border-radius: 5px;
     }
     &_btnStyle {
         background-color: $morado;
@@ -44,5 +91,13 @@
         padding: 5px;
         border-radius: 5px;
         color: white;
+        &--red {
+            color: white;
+            width: 200px;
+            height: 40px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: red;
+        }
     }
 }

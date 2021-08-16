@@ -1,15 +1,20 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { MyListContext } from '../../contexts/MyList';
 import { ContainerMain, ContainerMainNoFlex } from '../../helpers/ContainerMain';
 import { httpRequest } from '../../helpers/httpRequest';
 import { APIUrl, MyApiKey, OriginalQualityImage } from '../../helpers/Utils';
-// import { updateTitlePage } from '../../helpers/UpdateTitle';
+import UpdateMyList from '../MyList/ListHandler';
 import { Credits } from './Credits';
 import { Description } from './Description';
 import { Media } from './Media';
+import {Helmet} from 'react-helmet';
 
 export const ShowDetails = ({ onShowModal }) => {
     const { RouteTypeFilm, RouteIdFilm } = useParams();
+
+    // get de ListContext
+    const { myList, setMyList } = useContext(MyListContext);
 
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -39,6 +44,9 @@ export const ShowDetails = ({ onShowModal }) => {
             <ContainerMain>
                 {response !== null && RouteTypeFilm === 'movie' ?
                     <div className='dt_containerMain'>
+                        <Helmet>
+                            <title>MovieMania - {response.title}</title>
+                        </Helmet>
                         <div className='dt_containerImage'>
                         <img 
                             src={`${OriginalQualityImage}${response.poster_path}`}
@@ -57,12 +65,20 @@ export const ShowDetails = ({ onShowModal }) => {
                             ))}
                         </div>
                         <p className=''>{response.overview}</p>
+                        <button 
+                            className='list_btnStyle'
+                            onClick={() => UpdateMyList(myList, setMyList, 'add', response.id, RouteTypeFilm, response.title, response.backdrop_path)}>
+                                Agregar a mi lista
+                        </button>
                     </div>
                 </div> 
                 :
                 // If not be a movie... change render to TV Series
                 <div className='dt_containerMain'>
                     {response !== null && <div className='dt_containerImage'>
+                        <Helmet>
+                            <title>MovieMania - {response.name}</title>
+                        </Helmet>
                         {response.poster_path !== null ? 
                         <img 
                             src={`${OriginalQualityImage}${response.poster_path}`}
@@ -85,6 +101,11 @@ export const ShowDetails = ({ onShowModal }) => {
                         ))}
                     </div>
                     <p className=''>{response.overview}</p>
+                    <button 
+                        className='list_btnStyle'
+                        onClick={() => UpdateMyList(myList, setMyList, 'add', response.id, RouteTypeFilm, response.name, response.backdrop_path)}>
+                            Agregar a mi lista
+                    </button>
                 </div>}
             </div>}
             </ContainerMain>

@@ -1,11 +1,15 @@
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LowQualityImagen } from '../../helpers/Utils';
+import {Helmet} from 'react-helmet';
 
 export const Films = ({ arrfilms, isLoading, category }) => {
     useEffect(() => { }, [arrfilms, isLoading, category])
     return (
         <Fragment>
+            <Helmet>
+                <title>MovieMania - Página de inicio</title>
+            </Helmet>
             {/* {error && <h1>Error 404</h1>} */}
             {isLoading === true && <h1>Loading</h1>}
             <div className='fm'>

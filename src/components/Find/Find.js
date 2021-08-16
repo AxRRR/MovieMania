@@ -6,7 +6,9 @@ import { httpRequest } from '../../helpers/httpRequest';
 import { ContainerMain } from '../../helpers/ContainerMain';
 import { usePaginator } from '../../hooks/usePaginator';
 import { InfoMessage } from '../../ui/InfoMessage';
+
 import { MyListContext } from '../../contexts/MyList';
+import UpdateMyList from '../MyList/ListHandler';
 
 export const Find = () => {
     const [response, setResponse] = useState(null);
@@ -19,8 +21,7 @@ export const Find = () => {
     const Location = useLocation();
     const { q = '' } = queryString.parse( Location.search );
 
-    // My List Context
-    const { myList, setMyList } = useContext( MyListContext );
+    const { myList, setMyList } = useContext(MyListContext);
 
     useEffect(() => {
         if( q === '') return;
@@ -57,7 +58,7 @@ export const Find = () => {
                                         src={`${OriginalQualityImage}${r.poster_path}`}
                                         className='find_poster'
                                         alt={r.id}
-                                        />
+                                    />
                                 </div>
                                 <div>
                                     {r.media_type === 'movie' ? 
@@ -75,18 +76,10 @@ export const Find = () => {
                             {r.media_type === 'movie' ?
                                 <button 
                                     className='list_btnStyle'
-                                    onClick={() => setMyList([...myList, {
-                                        id: r.id,
-                                        mediatype: r.media_type,
-                                        name: r.title
-                                }])}>Agregar a mi lista</button> :
+                                    onClick={() => UpdateMyList(myList, setMyList, 'add', r.id, r.media_type, r.title, r.backdrop_path)}>Agregar a mi lista</button> :
                                 <button 
                                     className='list_btnStyle'
-                                    onClick={() => setMyList([...myList, {
-                                        id: r.id,
-                                        mediatype: r.media_type,
-                                        name: r.name
-                                }])}>Agregar a mi lista</button>}
+                                    onClick={() => UpdateMyList(myList, setMyList, 'add', r.id, r.media_type, r.name, r.backdrop_path)}>Agregar a mi lista</button>}
                             </div>
                         </div>
                     )}
