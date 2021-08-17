@@ -30,6 +30,12 @@
         width: 100%;
         height: 50px;
     }
+    &_overview {
+        height: 155px;
+        white-space: normal; 
+        overflow-y: scroll;
+        text-overflow: ellipsis;
+    }
     &_genresStyle {
         margin-right: 10px;
     }

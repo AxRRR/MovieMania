@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { httpRequest } from '../../helpers/httpRequest';
-import { APIUrl, MyApiKey } from '../../helpers/Utils';
+import { APIUrl, LowQualityImagen, MyApiKey } from '../../helpers/Utils';
 
 export const BestRated = () => {
     const [response, setResponse] = useState(null);
@@ -36,11 +36,11 @@ export const BestRated = () => {
                         <div 
                             className='sd_containerInd'>
                             <img 
-                                src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
+                                src={`${LowQualityImagen}${movie.poster_path}`}
                                 alt={movie.title}
                                 className='sd_poster' 
                             />
-                            <p className='fm_description'>{movie.title}</p>
+                            <p className='sd_description'>{movie.title}</p>
                         </div>
                     </Link>
                 ))}

@@ -91,6 +91,9 @@
         padding: 5px;
         border-radius: 5px;
         color: white;
+        &:hover {
+            background-color: lighten($color: $morado, $amount: 10);
+        }
         &--red {
             color: white;
             width: 200px;

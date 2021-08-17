@@ -64,7 +64,7 @@ export const ShowDetails = ({ onShowModal }) => {
                                     className='dt_genresStyle'>{g.name}</p>
                             ))}
                         </div>
-                        <p className=''>{response.overview}</p>
+                        <p className='dt_overview'>{response.overview}</p>
                         <button 
                             className='list_btnStyle'
                             onClick={() => UpdateMyList(myList, setMyList, 'add', response.id, RouteTypeFilm, response.title, response.backdrop_path)}>
@@ -92,7 +92,7 @@ export const ShowDetails = ({ onShowModal }) => {
                             className='dt_bigPoster'
                         />}
                     </div>}
-                {response !== null && <div className='dt_containerDetails'>
+                    {response !== null && <div className='dt_containerDetails'>
                     <p className='dt_title'>{response.name}({response.first_air_date.slice(0, 4)})</p>
                     <p className=''>{response.first_air_date}  episodios: {response.number_of_episodes}</p>
                     <div className='dt_genres'>
@@ -100,7 +100,7 @@ export const ShowDetails = ({ onShowModal }) => {
                             <p key={g.name} className='dt_genresStyle'>{g.name}</p>
                         ))}
                     </div>
-                    <p className=''>{response.overview}</p>
+                    <p className='dt_overview'>{response.overview}</p>
                     <button 
                         className='list_btnStyle'
                         onClick={() => UpdateMyList(myList, setMyList, 'add', response.id, RouteTypeFilm, response.name, response.backdrop_path)}>

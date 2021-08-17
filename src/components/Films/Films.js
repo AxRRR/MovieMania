@@ -21,21 +21,21 @@ export const Films = ({ arrfilms, isLoading, category }) => {
                     <img 
                         src={`${LowQualityImagen}${movie.poster_path}`}
                         alt={movie.title}
-                        className='fm_poster'
+                        className='fm_poster--hidden'
                     />
                     {
                         category === 'tv' ? 
                         <div>
                             <Link to={`/tv/${movie.id}`}>
                                 <p className='fm_description'>{movie.name}</p>
-                                <p className='fm_description'>{movie.first_air_date}</p>
+                                {/* <p className='fm_description'>{movie.first_air_date}</p> */}
                             </Link>
                         </div>
                         :
                         <div>
                             <Link to={`/movie/${movie.id}`}>
                                 <p className='fm_description'>{movie.title}</p>
-                                <p className='fm_description'>{movie.release_date}</p>
+                                {/* <p className='fm_description'>{movie.release_date}</p> */}
                             </Link>
                         </div> 
                         }
