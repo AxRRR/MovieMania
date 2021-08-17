@@ -28,7 +28,7 @@ export const BestRated = () => {
     return (
         <Fragment>
             <div className='sd_containerMain'>
-                <p>Peliculas mejor valoradas:</p>
+                <h3 className='sd_title'>Peliculas mejor valoradas:</h3>
                 {response !== null && 
                     loading === false && 
                         response.results.slice(0, 5).map((movie) => (

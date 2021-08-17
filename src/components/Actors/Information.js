@@ -42,7 +42,7 @@ export const Information = ({ Actor }) => {
                         <p className='inf_text--bold'>Fecha de nacimiento:</p>
                         <p className='inf_text--normal'>{response.birthday}</p>
                         {!!response.deathday && <div>
-                            <p className='inf_text--normal'>Fallecimiento:</p>
+                            <p className='inf_text--bold'>Fallecimiento:</p>
                             <p className='inf_text--normal'>{response.deathday}</p>
                             </div>
                         }

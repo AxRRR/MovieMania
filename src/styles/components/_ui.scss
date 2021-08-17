@@ -24,10 +24,9 @@
 }
 
 //BIG MODAL
-  
 .modal {
     &__modal {
-        background-color: white;
+        background-color: transparent;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         border-radius: 5px;
         position: fixed;
@@ -48,6 +47,29 @@
     }
 }
 
+//Small Modal
+.modalSmall {
+    &__modalSmall {
+        background-color: transparent;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        position: fixed;
+        top: 5vh;
+        width: 30%;
+        left: 35%;
+        z-index: 30;
+        animation: slide-down 300ms ease-out forwards;
+    }
+    &__backdropSmall {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 20;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+}
 
 %buttonStyle {
     width: 100%;
@@ -105,6 +127,12 @@
 
 // ShowMedia Component Styles 
 .bigBackdrops {
+    &--Preview {
+        width: 100%;
+    }
+}
+
+.bigPosters {
     &--Preview {
         width: 100%;
     }

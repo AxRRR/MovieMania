@@ -51,14 +51,13 @@ export const Posters = ({ resp }) => {
                 <img
                     key={b.file_path}
                     src={`${LowQualityImagen}${b.file_path}`}
-                    alt='aaaa'
-                    className='BigPosters'
-                    onClick={() => saveImageHandler(`${LowQualityImagen}${b.file_path}`)}
+                    alt={b.file_path}
+                    onClick={() => saveImageHandler(`${OriginalQualityImage}${b.file_path}`)}
                 />
             ))}
             {showModal && <ShowMedia 
                 onClose={() => setShowModal(false)} 
-                    arrImages={savePathImg} />}
+                    arrImages={savePathImg} type='poster' />}
         </Fragment>
     );
 };

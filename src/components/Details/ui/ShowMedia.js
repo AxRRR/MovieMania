@@ -1,20 +1,25 @@
 import React, { Fragment } from 'react';
-import { Modal } from '../../../ui/Modal';
+import { Modal, ModalSmall } from '../../../ui/Modal';
 
-export const ShowMedia = ({ onClose, arrImages }) => {
+export const ShowMedia = ({ onClose, arrImages, type }) => {
     return (
         <Fragment>
+            {type !== 'poster' ? 
             <Modal onClose={onClose}>
-            {/* <p className='modal__title'>Start Sign In:</p>
-            <p className='modal__body'>Start your order signin up with your Google or Facebok Account</p> */}
-            {/* <div className='modal__social-container'> */}
                 <img 
                     src={arrImages}
                     alt={arrImages.file_path}
                     className='bigBackdrops--Preview'
                 />
-            {/* </div> */}
             </Modal>
+            : 
+            <ModalSmall onClose={onClose}>
+                <img 
+                    src={arrImages}
+                    alt={arrImages.file_path}
+                    className='bigPosters--Preview'
+                />
+            </ModalSmall>}
         </Fragment>
     );
 };

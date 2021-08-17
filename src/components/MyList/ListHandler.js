@@ -1,3 +1,4 @@
+
 // handler List - Add/Delete
 export default function UpdateMyList(myList, setMyList, type, id, mediatype, name, poster_path){
 

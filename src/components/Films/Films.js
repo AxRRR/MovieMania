@@ -10,7 +10,6 @@ export const Films = ({ arrfilms, isLoading, category }) => {
             <Helmet>
                 <title>MovieMania - Página de inicio</title>
             </Helmet>
-            {/* {error && <h1>Error 404</h1>} */}
             {isLoading === true && <h1>Loading</h1>}
             <div className='fm'>
             {arrfilms !== null && 
@@ -39,7 +38,7 @@ export const Films = ({ arrfilms, isLoading, category }) => {
                             </Link>
                         </div> 
                         }
-                    {/* <p className='movie avegare'>{movie.vote_average * 10}% average</p> */}
+                    {/* <p>{movie.vote_average * 10}% average</p> */}
                 </div>
             ))}
             </div>

@@ -1,27 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { httpRequest } from '../../helpers/httpRequest';
 import { APIUrl, MyApiKey } from '../../helpers/Utils';
-// import queryString from 'query-string';
 import { usePaginator } from '../../hooks/usePaginator';
 import { BestRated } from './BestRated';
 import { Films } from './Films';
-// import { useLocation } from 'react-router-dom';
 
-export const Filter = ({ category, genre = 'popular', history }) => {
+export const Filter = ({ category, genre = 'popular' }) => {
     const [typeFilm, setTypeFilm] = useState(category)
     const [typeGenre, setTypeGenre] = useState(genre)
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
-
-    // const location = useLocation();
-    // const { pathname } = useLocation();
-
-    // const handleSearch = ( e ) => {
-    //     console.log(pathname)
-    //     pathname.push((`?q=alex`));
-    // }
-
-    // const { q = '' } = queryString.parse( location.search );
 
     // Paginator Custom Hook
     const { CurrentPage, updatePageHandle } = usePaginator();
@@ -44,24 +32,34 @@ export const Filter = ({ category, genre = 'popular', history }) => {
         fetchData();
     }, [typeFilm, typeGenre, CurrentPage])
 
+    const updateFilter = (type) => {
+        setTypeFilm(type);
+        setTypeGenre('popular');
+    }
+
     return (
         <div className='ctg_Container'>
             <div>
                 <div className='ctg_filter'>
                     <p 
                         className='ctg_itemsWhite'
-                        onClick={() => setTypeFilm('movie')}>Peliculas</p>
+                        onClick={() => updateFilter('movie')}>Peliculas</p>
                     <p 
                         className='ctg_itemsWhite'
-                        onClick={() => setTypeFilm('tv')}>Series de TV</p>
+                        onClick={() => updateFilter('tv')}>Series de TV</p>
                 </div>
                 <div className='ctg_containerCategories'>
                     <p 
                         className='ctg_itemsNormal'
                         onClick={() => setTypeGenre('popular')}>Populares</p>
+                    {typeFilm === 'movie' ? 
                     <p 
                         className='ctg_itemsNormal'
-                        onClick={() => setTypeGenre('upcoming')}>Próximamente</p>
+                        onClick={() => setTypeGenre('upcoming')}>Próximamente</p> 
+                    :
+                    <p
+                        className='ctg_itemsNormal'
+                        onClick={() => setTypeGenre('on_the_air')}>En emisión</p>}
                     <p 
                         className='ctg_itemsNormal'
                         onClick={() => setTypeGenre('top_rated')}>Mejor valoradas</p>

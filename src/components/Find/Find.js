@@ -1,11 +1,11 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { Link, useLocation } from 'react-router-dom';
-import { APIUrl, errorMsg, MyApiKey, OriginalQualityImage } from '../../helpers/Utils';
+import { APIUrl, MyApiKey, OriginalQualityImage } from '../../helpers/Utils';
 import { httpRequest } from '../../helpers/httpRequest';
 import { ContainerMain } from '../../helpers/ContainerMain';
 import { usePaginator } from '../../hooks/usePaginator';
-import { InfoMessage } from '../../ui/InfoMessage';
+// import { InfoMessage } from '../../ui/InfoMessage';
 
 import { MyListContext } from '../../contexts/MyList';
 import UpdateMyList from '../MyList/ListHandler';
@@ -50,7 +50,8 @@ export const Find = () => {
                     {!!response && <p>Resultados de búsqueda:  `"{q}"` - resultados: {response.total_results}</p>}
                     {!!response && response.results.slice(0, 20).map((r) => 
                         <div>
-                            <Link to={`/${r.media_type}/${r.id}`}><div 
+                            <Link to={`/${r.media_type}/${r.id}`}>
+                        <div 
                             key={r.id}
                             className='find_containerMain'>
                                 <div>
@@ -86,7 +87,8 @@ export const Find = () => {
                     {/*  Paginator System */}
                     
                     {loading === false}
-                    {!!response && response.total_pages >= 2 ? <div className='pg_main'>
+                    {response.total_pages === 0 && <p>Error: No encontramos ningún resultado.</p>}
+                    {!!response && response.total_pages >= 2 && <div className='pg_main'>
                         <button
                             className='pg_main_btn-default'
                             onClick={() => updatePageHandle(2, response.total_pages)}>Ant</button>
@@ -94,8 +96,9 @@ export const Find = () => {
                         <button
                             className='pg_main_btn-default'
                             onClick={() => updatePageHandle(1, response.total_pages)}>Sig</button>
-                    </div> : 
-                        <InfoMessage theme={errorMsg}><p>Error: No encontramos ningún resultado.</p></InfoMessage>}
+                    </div>
+                        // <InfoMessage theme={errorMsg}><p>Error: No encontramos ningún resultado.</p></InfoMessage>}
+                    }
                     </div>
                 </ContainerMain>
             </Fragment>

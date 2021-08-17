@@ -1,13 +1,4 @@
 
-%letterStyle {
-    
-}
-
-
-%descriptionStyle {
-    
-}
-
 // Films Component Styles
 .fm {
     width: 70%;
@@ -24,6 +15,7 @@
         border-width: 1px;
         border-style: solid;
         border-color: rgba(46, 46, 46, 0.1);
+        // animation: slide-down 300ms ease-out forwards;
     }
     &_poster {
         width: 100%;
@@ -48,6 +40,17 @@
     }
 }
 
+@keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-3rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0rem);
+    }
+}
+
 // Best Rated Component Styles
 .sd {
     &_containerMain {
@@ -62,6 +65,11 @@
         float: left;
         width: 17%;
         height: 25%;
+    }
+    &_title {
+        color: rgb(98, 98, 98);
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
     }
     &_description {
         width: 225px;

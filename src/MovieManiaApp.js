@@ -5,7 +5,6 @@ import { Filter } from './components/Films/Filter';
 import { Route, Switch } from 'react-router-dom';
 import { ShowDetails } from './components/Details/ShowDetails';
 import { Credits } from './components/Details/Credits';
-import { Testeo } from './Testeo';
 import { Actor } from './components/Actors/Actor';
 import { Footer } from './layout/Footer';
 import { Find } from './components/Find/Find';
@@ -45,9 +44,6 @@ export const MovieManiaApp = () => {
                     </Route>
                     <Route exact path='/actor/:RouteTypeActor/:RouteIdActor'>
                         <Actor />
-                    </Route>
-                    <Route exact path='/testeo'>
-                        <Testeo />
                     </Route>
                     <Route exact path='/search'>
                         <Find />
